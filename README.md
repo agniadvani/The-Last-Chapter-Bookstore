@@ -45,7 +45,7 @@ For the **front-end** , I have developed the following features:
 - **Language** :
 
     - **Frontend:** HTML, CSS, JAVASCRIPT, jQuery
-    - **Scripting Language:** JAVA
+    - **Scripting Language:** JAVA (JSP, Servlets)
     - **Backend:** MySQL
     - **ORM:** Hibernate
     - **Testing:** JUnit
