@@ -48,5 +48,6 @@ For the **front-end** , I have developed the following features:
     - **Scripting Language:** JAVA
     - **Backend:** MySQL
     - **ORM:** Hibernate
+    - **Testing:** JUnit
     - **Browser** : Google Chrome, Microsoft Edge
     - **IDE** : Eclipse IDE
