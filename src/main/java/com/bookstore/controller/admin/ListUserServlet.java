@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bookstore.service.UserServices;
+
 @WebServlet("/admin/list_users")
 public class ListUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -19,8 +21,10 @@ public class ListUserServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String listPage = "user_list.jsp";
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher(listPage);
-		requestDispatcher.forward(request, response);
+		UserServices userServices = new UserServices(request, response);
+		userServices.listUser();
+//		String listPage = "user_list.jsp";
+//		RequestDispatcher requestDispatcher = request.getRequestDispatcher(listPage);
+//		requestDispatcher.forward(request, response);
 	}
 }
