@@ -13,12 +13,21 @@
 	<div align="center">
 		<h2>Users Management</h2>
 		<h3>
-			<a href="">Create new User</a>
+			<a href="user_form.jsp">Create New User</a>
 		</h3>
 	</div>
 
+	<c:if test="${message != null }">
+	<div>
+		<h4 id="msg-success" align="center" style="color: green;">
+			<i>${message}</i>
+		</h4>
+	</div>
+	</c:if>
+
 	<div align="center">
 		<table border="1" cellpadding="7">
+
 			<tr>
 				<th>Index</th>
 				<th>ID</th>
@@ -26,23 +35,27 @@
 				<th>Full Name</th>
 				<th>Actions</th>
 			</tr>
+
 			<c:forEach var="user" items="${listUsers}" varStatus="status">
 				<tr>
 					<td>${status.index+1}</td>
 					<td>${user.userId}</td>
 					<td>${user.email}</td>
 					<td>${user.fullName}</td>
-					<td>
-						<a href="" >Edit</a>
-						<a href="">Delete</a>
-					</td>
+					<td><a href="">Edit</a> <a href="">Delete</a></td>
 				</tr>
-				
 			</c:forEach>
+
 		</table>
 	</div>
 
 
 	<jsp:directive.include file="footer.jsp" />
+	<script type="text/javascript">
+		setTimeout(function() {
+			var msg = document.getElementById("msg-success");
+			msg.parentNode.removeChild(msg);
+		}, 4000);
+	</script>
 </body>
 </html>
