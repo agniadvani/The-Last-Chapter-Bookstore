@@ -1,4 +1,4 @@
-package com.bookstore.controller.admin;
+package com.bookstore.controller.admin.category;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,20 +7,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.bookstore.service.UserServices;
+import com.bookstore.service.CategoryServices;
 
-@WebServlet("/admin/edit_user")
-public class EditUserServlet extends HttpServlet {
+@WebServlet("/admin/list_category")
+public class ListCategoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public EditUserServlet() {
+	public ListCategoryServlet() {
 		super();
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		UserServices userServices = new UserServices(request, response);
-		userServices.editUser();
+
+		response.getWriter().println("List Category");
+		CategoryServices categoryServices = new CategoryServices(request, response);
+		categoryServices.listCategory();
 	}
 
 }

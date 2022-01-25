@@ -18,11 +18,11 @@
 	</div>
 
 	<c:if test="${message != null }">
-	<div>
-		<h4 id="msg-success" align="center" style="color: green;">
-			<i>${message}</i>
-		</h4>
-	</div>
+		<div>
+			<h4 id="msg-success" align="center" style="color: green;">
+				<i>${message}</i>
+			</h4>
+		</div>
 	</c:if>
 
 	<div align="center">
@@ -37,12 +37,18 @@
 			</tr>
 
 			<c:forEach var="user" items="${listUsers}" varStatus="status">
-				<tr>
-					<td>${status.index+1}</td>
-					<td>${user.userId}</td>
-					<td>${user.email}</td>
-					<td>${user.fullName}</td>
-					<td><a href="edit_user?id=${user.userId}">Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:confirmDelete(${user.userId})">Delete</a></td>
+				<c:if test="${user.userId == 1 }">
+					<tr style="color: red;">
+				</c:if>
+				<c:if test="${user.userId != 1 }">
+					<tr>
+				</c:if>
+				<td>${status.index+1}</td>
+				<td>${user.userId}</td>
+				<td>${user.email}</td>
+				<td>${user.fullName}</td>
+				<td><a href="edit_user?id=${user.userId}">Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
+					href="javascript:confirmDelete(${user.userId})">Delete</a></td>
 				</tr>
 			</c:forEach>
 
@@ -56,10 +62,11 @@
 			var msg = document.getElementById("msg-success");
 			msg.parentNode.removeChild(msg);
 		}, 4000);
-		
-		function confirmDelete(userId){
-			if(confirm("Are you sure you want to delete the user with ID "+userId+" ?")){
-				window.location = "delete_user?id="+userId;
+
+		function confirmDelete(userId) {
+			if (confirm("Are you sure you want to delete the user with ID "
+					+ userId + " ?")) {
+				window.location = "delete_user?id=" + userId;
 			}
 		}
 	</script>
