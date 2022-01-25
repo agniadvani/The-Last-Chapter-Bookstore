@@ -1,6 +1,6 @@
 <div align="center">
 	<div>
-		<img src="images/BookStoreLogo.png">
+		<a href="/website"><img src="images/BookStoreLogo.png"></a>
 	</div>
 	<div>
 		<input type="text" name="keyword" size="50" /> <input type="button"

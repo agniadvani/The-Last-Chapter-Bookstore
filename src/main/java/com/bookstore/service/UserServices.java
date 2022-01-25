@@ -67,10 +67,17 @@ public class UserServices {
 		int userId = Integer.parseInt(request.getParameter("id"));
 		Users user = userDAO.get(userId);
 
-		String editPage = "user_form.jsp";
-		request.setAttribute("user", user);
+		String destPage = "user_form.jsp";
 
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher(editPage);
+		if (user == null) {
+			destPage = "message.jsp";
+			String errorMessage = "Could not find user with ID " + userId;
+			request.setAttribute("message", errorMessage);
+		} else {
+			request.setAttribute("user", user);
+		}
+
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher(destPage);
 		requestDispatcher.forward(request, response);
 
 	}
@@ -104,10 +111,26 @@ public class UserServices {
 
 	public void deleteUser() throws ServletException, IOException {
 		int userId = Integer.parseInt(request.getParameter("id"));
-		userDAO.delete(userId);
+		if (userId == 1) {
+			String message = "The default admin user account cannot be deleted.";
 
-		String message = "User has been deleted successfully";
-		listUser(message);
+			request.setAttribute("message", message);
+			request.getRequestDispatcher("message.jsp").forward(request, response);
+			return;
+		}
+		Users userById = userDAO.get(userId);
+		if (userById == null) {
+			String message = "Could not find user by user Id " + userId + ".";
+			request.setAttribute("message", message);
+
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("message.jsp");
+			requestDispatcher.forward(request, response);
+
+		} else {
+			userDAO.delete(userId);
+			String message = "User has been deleted successfully";
+			listUser(message);
+		}
 	}
 
 	public void login() throws ServletException, IOException {

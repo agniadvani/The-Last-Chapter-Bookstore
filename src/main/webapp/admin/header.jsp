@@ -1,5 +1,5 @@
 <div align="center">
-	<img src="../images/BookStoreAdminLogo.png" />
+	<a href="/website/admin"><img src="../images/BookStoreAdminLogo.png" /></a>
 	<div>
 		Welcome, Admin | <a href="Logout">Logout</a> <br /> <br />
 	</div>
