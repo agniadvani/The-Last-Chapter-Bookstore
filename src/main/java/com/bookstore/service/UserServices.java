@@ -7,6 +7,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bookstore.dao.UserDAO;
 import com.bookstore.entity.Users;
@@ -118,7 +119,9 @@ public class UserServices {
 			request.getRequestDispatcher("message.jsp").forward(request, response);
 			return;
 		}
+
 		Users userById = userDAO.get(userId);
+
 		if (userById == null) {
 			String message = "Could not find user by user Id " + userId + ".";
 			request.setAttribute("message", message);
@@ -146,7 +149,7 @@ public class UserServices {
 			dispatcher.forward(request, response);
 
 		} else {
-			String message = "Login failed!";
+			String message = "You have entered an invalid username or password.";
 			request.setAttribute("message", message);
 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");

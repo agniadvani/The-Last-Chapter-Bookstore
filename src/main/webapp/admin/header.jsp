@@ -3,7 +3,7 @@
 	<a href="/website/admin"><img
 		src="../images/BookStoreAdminLogo.png" /></a>
 	<div>
-		Welcome, <c:out value="${useremail}"/> | <a href="Logout">Logout</a> <br /> <br />
+		Welcome, <c:out value="${useremail}"/> | <a href="logout">Logout</a> <br /> <br />
 	</div>
 	<div id="headermenu">
 		<div>
