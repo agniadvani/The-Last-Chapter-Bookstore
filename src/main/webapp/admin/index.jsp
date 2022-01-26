@@ -11,7 +11,7 @@
 	<jsp:directive.include file="header.jsp" />
 
 	<div align="center">
-		<h2>Administrative Dashboard</h2>
+		<h2 class="pageheading">Administrative Dashboard</h2>
 	</div>
 
 	<div align="center">

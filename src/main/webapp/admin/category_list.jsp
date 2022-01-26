@@ -7,12 +7,14 @@
 <meta charset="ISO-8859-1">
 <title>Manage Category - The Last Chapter Administration</title>
 <link rel="stylesheet" href="../css/style.css" >
+<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="../js/jquery.validate.min.js"></script>	
 </head>
 <body>
 	<jsp:directive.include file="header.jsp" />
 
 	<div align="center">
-		<h2>Category Management</h2>
+		<h2 class="pageheading">Category Management</h2>
 		<h3>
 			<a href="category_form.jsp">Create New Category</a>
 		</h3>
@@ -43,7 +45,7 @@
 					<td>${cat.categoryId}</td>
 					<td>${cat.name}</td>
 					<td><a href="edit_category?id=${cat.categoryId}">Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
-						href="javascript:confirmDelete(${cat.categoryId})">Delete</a></td>
+						href="javascript:void(0);" class="deleteLink" id="${cat.categoryId}">Delete</a></td>
 				</tr>
 			</c:forEach>
 
@@ -52,18 +54,22 @@
 
 
 	<jsp:directive.include file="footer.jsp" />
-	<script type="text/javascript">
+	<script type="text/javascript">	
+		$(document).ready(function() {
+			$(".deleteLink").each(function() {
+				$(this).on("click", function() {
+					catId = $(this).attr("id");
+					if (confirm('Are you sure you want to delete the category with ID ' +  catId + '?')) {
+						window.location = 'delete_category?id=' + catId;
+					}					
+				});
+			});
+		});
 		setTimeout(function() {
 			var msg = document.getElementById("msg-success");
 			msg.parentNode.removeChild(msg);
 		}, 4000);
 
-		function confirmDelete(categoryId) {
-			if (confirm("Are you sure you want to delete the Category with ID "
-					+ categoryId + " ?")) {
-				window.location = "delete_category?id=" + categoryId;
-			}
-		}
 	</script>
 </body>
 </html>

@@ -115,8 +115,8 @@ public class UserDAOTest {
 	
 	@Test
 	public void testCheckLoginSuccess() {
-		String email = "nam@codejava.net";
-		String password = "mysecret";
+		String email = "mike@dundermif.com";
+		String password = "bestboss";
 		boolean loginResult = userDAO.checkLogin(email, password);
 		
 		assertTrue(loginResult);

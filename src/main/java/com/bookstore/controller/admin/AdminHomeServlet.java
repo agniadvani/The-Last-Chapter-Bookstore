@@ -14,12 +14,17 @@ import javax.servlet.http.HttpServletResponse;
 public class AdminHomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-  
-    public AdminHomeServlet() {
+
+
+	public AdminHomeServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
+	  
+ 
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+			doGet(req, resp);
+	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String page = "index.jsp";
