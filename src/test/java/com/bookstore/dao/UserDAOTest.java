@@ -28,9 +28,9 @@ public class UserDAOTest {
 	@Test
 	public void testCreateUsers() {
 		Users user1 = new Users();
-		user1.setEmail("mike@dundermif.com");
-		user1.setFullName("Mike Ross");
-		user1.setPassword("bestboss");
+		user1.setEmail("newuser@gmail.com");
+		user1.setFullName("New User");
+		user1.setPassword("new");
 		
 		user1 = userDAO.create(user1);
 		
