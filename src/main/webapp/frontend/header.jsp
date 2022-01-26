@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div align="center">
 	<div>
-		<a href="/website"><img src="images/BookStoreLogo.png"></a>
+		<a href="/website"><img src="${pageContext.request.contextPath}/images/BookStoreLogo.png"></a>
 	</div>
 	<div>
 		<input type="text" name="keyword" size="50" /> <input type="button"
