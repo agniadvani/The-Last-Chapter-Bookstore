@@ -5,16 +5,16 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Manage Users - The Last Chapter Administration</title>
+<title>Manage Category - The Last Chapter Administration</title>
 <link rel="stylesheet" href="../css/style.css" >
 </head>
 <body>
 	<jsp:directive.include file="header.jsp" />
 
 	<div align="center">
-		<h2>Users Management</h2>
+		<h2>Category Management</h2>
 		<h3>
-			<a href="user_form.jsp">Create New User</a>
+			<a href="category_form.jsp">Create New Category</a>
 		</h3>
 	</div>
 
@@ -32,24 +32,18 @@
 			<tr>
 				<th>Index</th>
 				<th>ID</th>
-				<th>Email</th>
-				<th>Full Name</th>
+				<th>Name</th>
 				<th>Actions</th>
 			</tr>
 
-			<c:forEach var="user" items="${listUsers}" varStatus="status">
-				<c:if test="${user.userId == 1 }">
-					<tr style="color: red;">
-				</c:if>
-				<c:if test="${user.userId != 1 }">
-					<tr>
-				</c:if>
-				<td>${status.index+1}</td>
-				<td>${user.userId}</td>
-				<td>${user.email}</td>
-				<td>${user.fullName}</td>
-				<td><a href="edit_user?id=${user.userId}">Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
-					href="javascript:confirmDelete(${user.userId})">Delete</a></td>
+			<c:forEach var="cat" items="${listCategory}" varStatus="status">
+
+				<tr>
+					<td>${status.index+1}</td>
+					<td>${cat.categoryId}</td>
+					<td>${cat.name}</td>
+					<td><a href="edit_category?id=${cat.categoryId}">Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
+						href="javascript:confirmDelete(${cat.categoryId})">Delete</a></td>
 				</tr>
 			</c:forEach>
 
@@ -64,10 +58,10 @@
 			msg.parentNode.removeChild(msg);
 		}, 4000);
 
-		function confirmDelete(userId) {
-			if (confirm("Are you sure you want to delete the user with ID "
-					+ userId + " ?")) {
-				window.location = "delete_user?id=" + userId;
+		function confirmDelete(categoryId) {
+			if (confirm("Are you sure you want to delete the Category with ID "
+					+ categoryId + " ?")) {
+				window.location = "delete_category?id=" + categoryId;
 			}
 		}
 	</script>

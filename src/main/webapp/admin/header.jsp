@@ -1,12 +1,33 @@
 <div align="center">
-	<a href="/website/admin"><img src="../images/BookStoreAdminLogo.png" /></a>
+	<a href="/website/admin"><img
+		src="../images/BookStoreAdminLogo.png" /></a>
 	<div>
 		Welcome, Admin | <a href="Logout">Logout</a> <br /> <br />
 	</div>
-	<div>
-		<b> <a href="list_users">Users</a> | <a href="list_category">Categories</a>
-			| <a href="books">Books</a> | <a href="customer">Customers</a> | <a
-			href="reviews">Reviews</a> | <a href="orders">Orders</a>
-		</b>
+	<div id="headermenu">
+		<div>
+			<a href="list_users"> <img src="../images/users.png" /><br />Users
+			</a>
+		</div>
+		<div>
+			<a href="list_category"> <img src="../images/category.png" /><br />Categories
+			</a>
+		</div>
+		<div>
+			<a href="list_books"> <img src="../images/bookstack.png" /><br />Books
+			</a>
+		</div>
+		<div>
+			<a href="list_customer"> <img src="../images/customer.png" /><br />Customers
+			</a>
+		</div>
+		<div>
+			<a href="list_review"> <img src="../images/review.png" /><br />Reviews
+			</a>
+		</div>
+		<div>
+			<a href="list_order"><img src="../images/order.png" /><br />
+				Orders </a>
+		</div>
 	</div>
 </div>
