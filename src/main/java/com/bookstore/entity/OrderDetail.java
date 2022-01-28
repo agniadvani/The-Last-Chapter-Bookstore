@@ -18,12 +18,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "order_detail", catalog = "bookstoredb")
-@NamedQueries({
-	@NamedQuery(name = "OrderDetail.bestSelling", 
-			query = "SELECT od.book FROM OrderDetail od GROUP by od.book.bookId "
-					+ "ORDER BY SUM(od.quantity) DESC")
-	
-})
+
 public class OrderDetail implements java.io.Serializable {
 
 	private OrderDetailId id = new OrderDetailId();
