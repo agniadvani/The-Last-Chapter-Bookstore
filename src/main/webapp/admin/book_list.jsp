@@ -8,7 +8,7 @@
 <title>Manage Users - The Last Chapter Administration</title>
 <link rel="stylesheet" href="../css/style.css">
 <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="../js/jquery.validate.min.js"></script>	
+<script type="text/javascript" src="../js/jquery.validate.min.js"></script>
 </head>
 <body>
 	<jsp:directive.include file="header.jsp" />
@@ -16,7 +16,7 @@
 	<div align="center">
 		<h2 class="pageheading">Books Management</h2>
 		<h3>
-			<a href="book_form.jsp">Create New Book</a>
+			<a href="new_book">Create New Book</a>
 		</h3>
 	</div>
 
@@ -45,14 +45,20 @@
 
 			<c:forEach var="book" items="${listBooks}" varStatus="status">
 				<tr>
-				<td>${status.index+1}</td>
-				<td>${book.bookId}</td>
-				<td></td>
-				<td>${book.title}</td>
-				<td>${book.author}</td>
-				<td><a href="edit_book?id=${book.bookId}">Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;
-					<a href="javascript:void(0);" class="deleteLink"
-					id="${book.bookId}">Delete</a>
+					<td>${status.index+1}</td>
+					<td>${book.bookId}</td>
+					<td>
+						<img src="data:image/jpg;base64,${book.base64Image}" width="84" height="110"/>
+					</td>
+					<td>${book.title}</td>
+					<td>${book.author}</td>
+					<td>${book.category.name}</td>
+					<td>${book.price}</td>
+					<td>${book.lastUpdateTime}</td>
+
+					<td><a href="edit_book?id=${book.bookId}">Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="javascript:void(0);" class="deleteLink"
+						id="${book.bookId}">Delete</a>
 				</tr>
 			</c:forEach>
 
@@ -62,21 +68,32 @@
 
 	<jsp:directive.include file="footer.jsp" />
 	<script type="text/javascript">
-	$(document).ready(function() {
-		$(".deleteLink").each(function() {
-			$(this).on("click", function() {
-				bookId = $(this).attr("id");
-				if (confirm('Are you sure you want to delete the book with ID ' + bookId + '?')) {
-					window.location = 'delete_book?id=' + bookId;
-				}					
-			});
-		});
-	});
+		$(document).ready(
+				function() {
+							$(".deleteLink")
+									.each(
+											function() {
+												$(this)
+														.on(
+																"click",
+																function() {
+																	bookId = $(
+																			this)
+																			.attr(
+																					"id");
+																	if (confirm('Are you sure you want to delete the book with ID '
+																			+ bookId
+																			+ '?')) {
+																		window.location = 'delete_book?id='
+																				+ bookId;
+																	}
+																});
+											});
+						});
 		setTimeout(function() {
 			var msg = document.getElementById("msg-success");
 			msg.parentNode.removeChild(msg);
 		}, 4000);
-
 	</script>
 </body>
 </html>

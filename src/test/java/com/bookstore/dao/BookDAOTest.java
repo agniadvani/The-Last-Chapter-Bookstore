@@ -179,7 +179,6 @@ public class BookDAOTest {
 	@Test
 	public void testCount() {
 		long totalBooks = bookDao.count();
-
 		assertEquals(2, totalBooks);
 	}
 }

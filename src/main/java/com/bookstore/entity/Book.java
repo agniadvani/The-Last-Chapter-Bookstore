@@ -31,8 +31,10 @@ import javax.swing.event.TreeSelectionEvent;
  */
 @Entity
 @Table(name = "book", catalog = "bookstoredb", uniqueConstraints = @UniqueConstraint(columnNames = "title"))
-@NamedQueries({
-	@NamedQuery(name = "Book.findAll", query = "SELECT b FROM Book b")
+@NamedQueries({ @NamedQuery(name = "Book.findAll", query = "SELECT b FROM Book b"),
+		@NamedQuery(name = "Book.findByTitle", query = "SELECT b FROM Book b where b.title = :title"),
+		@NamedQuery(name = "Book.countAll", query = "SELECT COUNT(*) FROM Book b"),
+
 })
 public class Book implements java.io.Serializable {
 
@@ -52,13 +54,11 @@ public class Book implements java.io.Serializable {
 
 	public Book() {
 	}
-	
+
 	public Book(Integer bookId) {
 		super();
 		this.bookId = bookId;
 	}
-
-
 
 	public Book(Category category, String title, String author, String description, String isbn, byte[] image,
 			float price, Date publishDate, Date lastUpdateTime) {
@@ -183,7 +183,6 @@ public class Book implements java.io.Serializable {
 	public void setLastUpdateTime(Date lastUpdateTime) {
 		this.lastUpdateTime = lastUpdateTime;
 	}
-}
 
 //	@OneToMany(fetch = FetchType.EAGER, mappedBy = "book")
 //	public Set<Review> getReviews() {
@@ -213,17 +212,17 @@ public class Book implements java.io.Serializable {
 //		this.orderDetails = orderDetails;
 //	}
 //	
-//	@Transient
-//	public String getBase64Image() {
-//		this.base64Image = Base64.getEncoder().encodeToString(this.image);
-//		return this.base64Image;
-//	}
-//	
-//	@Transient
-//	public void setBase64Image(String base64Image) {
-//		this.base64Image = base64Image;
-//	}
-//
+	@Transient
+	public String getBase64Image() {
+		this.base64Image = Base64.getEncoder().encodeToString(this.image);
+		return this.base64Image;
+	}
+
+	@Transient
+	public void setBase64Image(String base64Image) {
+		this.base64Image = base64Image;
+	}
+}
 //	@Transient
 //	public float getAverageRating() {
 //		float averageRating = 0.0f;
