@@ -1,6 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div align="center">
-	<a href="/website/admin"><img
+	<a href="/website/admin/"><img
 		src="../images/BookStoreAdminLogo.png" /></a>
 	<div>
 		Welcome, <c:out value="${useremail}"/> | <a href="logout">Logout</a> <br /> <br />

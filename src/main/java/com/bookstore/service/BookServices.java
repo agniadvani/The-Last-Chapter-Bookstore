@@ -131,13 +131,21 @@ public class BookServices {
 	public void editBook() throws ServletException, IOException {
 		Integer bookId = Integer.parseInt(request.getParameter("id"));
 		Book book = bookDAO.get(bookId);
-		List<Category> listCategory = categoryDAO.listAll();
+		String destPage = "book_form.jsp";
 
-		request.setAttribute("book", book);
-		request.setAttribute("listCategory", listCategory);
+		if (book != null) {
+			List<Category> listCategory = categoryDAO.listAll();
 
-		String editPage = "book_form.jsp";
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher(editPage);
+			request.setAttribute("book", book);
+			request.setAttribute("listCategory", listCategory);
+
+		} else {
+			destPage = "message.jsp";
+			String message = "Could not find book with ID " + bookId;
+			request.setAttribute("message", message);
+		}
+
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher(destPage);
 		requestDispatcher.forward(request, response);
 
 	}
@@ -167,9 +175,14 @@ public class BookServices {
 
 	public void deleteBook() throws ServletException, IOException {
 		Integer bookId = Integer.parseInt(request.getParameter("id"));
-
+		Book book = bookDAO.get(bookId);
+		if (book == null) {
+			String destPage = "message.jsp";
+			String message = "Could not find book with ID " + bookId;
+			request.setAttribute("message", message);
+			return;
+		}
 		bookDAO.delete(bookId);
-
 		String message = "The book has been deleted successfully.";
 		listBooks(message);
 	}
