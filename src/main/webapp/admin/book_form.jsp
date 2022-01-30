@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -30,7 +32,7 @@
 		<c:if test="${book != null}">
 			<form action="update_book" method="post" id="bookForm"
 				enctype="multipart/form-data">
-				<input type="hidden" name="bookId" value="${book.bookId}">
+				<input type="hidden" name="bookId" value="${book.bookId}" />
 		</c:if>
 		<c:if test="${book == null}">
 			<form action="create_book" method="post" id="bookForm"
@@ -71,7 +73,8 @@
 			<tr>
 				<td align="right">Publish Date:</td>
 				<td align="left"><input type="text" id="publishDate"
-					name="publishDate" size="20" value="${book.publishDate}" /></td>
+					name="publishDate" size="20"
+					value="<fmt:formatDate pattern="MM/dd/yy" value='${book.publishDate}' />" /></td>
 			</tr>
 			<tr>
 				<td align="right">Book Image:</td>
@@ -93,12 +96,11 @@
 			<tr>
 				<td>&nbsp;</td>
 			</tr>
-			<tr>
-				<td colspan="2" align="center"><input type="submit"
-					value="Save">&nbsp;&nbsp;&nbsp; <a href="list_books"><input
-						type="button" value="Cancel"></a></td>
-			</tr>
 		</table>
+		<br><br>
+			<input type="submit" value="Save">&nbsp;&nbsp;&nbsp;
+				<a href="list_books"><input type="button" value="Cancel"></a></td>
+		
 		</form>
 	</div>
 
@@ -143,9 +145,7 @@
 				}
 			});
 			
-			$("#buttonCancel").click(function() {
-				history.go(-1);
-			});
+		
 	});
 	function showImageThumbnail(fileInput) {
 		var file = fileInput.files[0];

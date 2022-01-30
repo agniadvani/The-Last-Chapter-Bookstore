@@ -46,14 +46,14 @@
 				<td align="right">Password:</td>
 				<td align="left"><input type="password" id="password" name="password" size="20" value="${user.password}" /></td>
 			</tr>	
-			<tr><td>&nbsp;</td></tr>
-			<tr>
-				<td colspan="2" align="center">
+							
+		</table>
+		<br>
+			
 					<input type="submit" value="Save">&nbsp;&nbsp;&nbsp;
 					<a href="list_users"><input type="button" value="cancel"></a>
-				</td>
-			</tr>				
-		</table>
+				
+			
 		</form>
 	</div>
 

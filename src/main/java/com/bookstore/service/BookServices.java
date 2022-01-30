@@ -149,7 +149,7 @@ public class BookServices {
 		Book existBook = bookDAO.get(bookId);
 		Book bookByTitle = bookDAO.findByTitle(title);
 
-		if (bookByTitle != null && !existBook.equals(bookByTitle)) {
+		if (bookByTitle != null && existBook.getBookId() != bookByTitle.getBookId()) {
 			String message = "Could not update book because there's another book having same title.";
 			request.setAttribute("message", message);
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("message.jsp");
