@@ -187,18 +187,18 @@ public class BookServices {
 		listBooks(message);
 	}
 
-//	public void listBooksByCategory() throws ServletException, IOException {
-//		int categoryId = Integer.parseInt(request.getParameter("id"));
-//		List<Book> listBooks = bookDAO.listByCategory(categoryId);
-//		Category category = categoryDAO.get(categoryId);
-//		
-//		request.setAttribute("listBooks", listBooks);
-//		request.setAttribute("category", category);
-//		
-//		String listPage = "frontend/books_list_by_category.jsp";
-//		RequestDispatcher requestDispatcher = request.getRequestDispatcher(listPage);
-//		requestDispatcher.forward(request, response);		
-//	}
+	public void listBooksByCategory() throws ServletException, IOException {
+		int categoryId = Integer.parseInt(request.getParameter("id"));
+		List<Book> listBooks = bookDAO.listByCategory(categoryId);
+		Category category = categoryDAO.get(categoryId);
+		
+		request.setAttribute("listBooks", listBooks);
+		request.setAttribute("category", category);
+		
+		String listPage = "frontend/books_list_by_category.jsp";
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher(listPage);
+		requestDispatcher.forward(request, response);		
+	}
 
 	public void viewBookDetail() throws ServletException, IOException {
 		Integer bookId = Integer.parseInt(request.getParameter("id"));

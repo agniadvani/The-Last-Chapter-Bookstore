@@ -1,5 +1,6 @@
 package com.bookstore.dao;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -34,6 +35,11 @@ public class BookDAO extends JpaDAO<Book> implements GenericDAO<Book> {
 		return super.findWithNamedQuery("Book.findAll");
 	}
 
+	@Override
+	public long count() {
+		return super.countWithNamedQuery("Book.countAll");
+	}
+
 	public Book findByTitle(String title) {
 		List<Book> result = super.findWithNamedQuery("Book.findByTitle", "title", title);
 
@@ -44,9 +50,38 @@ public class BookDAO extends JpaDAO<Book> implements GenericDAO<Book> {
 		return null;
 	}
 
-	@Override
-	public long count() {
-		return super.countWithNamedQuery("Book.countAll");
+	public List<Book> listByCategory(int categoryId) {
+		return super.findWithNamedQuery("Book.findByCategory", "catId", categoryId);
 	}
 
+	public List<Book> search(String keyword) {
+		return super.findWithNamedQuery("Book.search", "keyword", keyword);
+	}
+
+	public List<Book> listNewBooks() {
+		return super.findWithNamedQuery("Book.listNew", 0, 4);
+	}
+
+	public long countByCategory(int categoryId) {
+		return super.countWithNamedQuery("Book.countByCategory", "catId", categoryId);
+	}
+
+	public List<Book> listBestSellingBooks() {
+		return super.findWithNamedQuery("OrderDetail.bestSelling", 0, 4);
+	}
+
+	public List<Book> listMostFavoredBooks() {
+		List<Book> mostFavoredBooks = new ArrayList<>();
+
+		List<Object[]> result = super.findWithNamedQueryObjects("Review.mostFavoredBooks", 0, 4);
+
+		if (!result.isEmpty()) {
+			for (Object[] elements : result) {
+				Book book = (Book) elements[0];
+				mostFavoredBooks.add(book);
+			}
+		}
+
+		return mostFavoredBooks;
+	}
 }
