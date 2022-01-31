@@ -189,27 +189,36 @@ public class BookServices {
 
 	public void listBooksByCategory() throws ServletException, IOException {
 		int categoryId = Integer.parseInt(request.getParameter("id"));
-		List<Book> listBooks = bookDAO.listByCategory(categoryId);
 		Category category = categoryDAO.get(categoryId);
-		
+
+		if (category == null) {
+			String message = "Sorry, the category ID " + categoryId + " is not available.";
+			request.setAttribute("message", message);
+			request.getRequestDispatcher("frontend/message.jsp").forward(request, response);
+
+			return;
+		}
+
+		List<Book> listBooks = bookDAO.listByCategory(categoryId);
+
 		request.setAttribute("listBooks", listBooks);
 		request.setAttribute("category", category);
-		
+
 		String listPage = "frontend/books_list_by_category.jsp";
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(listPage);
-		requestDispatcher.forward(request, response);		
-	}
-
-	public void viewBookDetail() throws ServletException, IOException {
-		Integer bookId = Integer.parseInt(request.getParameter("id"));
-		Book book = bookDAO.get(bookId);
-
-		request.setAttribute("book", book);
-
-		String detailPage = "frontend/book_detail.jsp";
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher(detailPage);
 		requestDispatcher.forward(request, response);
 	}
+
+//	public void viewBookDetail() throws ServletException, IOException {
+//		Integer bookId = Integer.parseInt(request.getParameter("id"));
+//		Book book = bookDAO.get(bookId);
+//
+//		request.setAttribute("book", book);
+//
+//		String detailPage = "frontend/book_detail.jsp";
+//		RequestDispatcher requestDispatcher = request.getRequestDispatcher(detailPage);
+//		requestDispatcher.forward(request, response);
+//	}
 
 //	public void search() throws ServletException, IOException {
 //		String keyword = request.getParameter("keyword");
