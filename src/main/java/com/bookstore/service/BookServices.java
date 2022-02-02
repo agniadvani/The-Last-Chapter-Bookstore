@@ -213,9 +213,14 @@ public class BookServices {
 	public void viewBookDetail() throws ServletException, IOException {
 		Integer bookId = Integer.parseInt(request.getParameter("id"));
 		Book book = bookDAO.get(bookId);
-
+		if (book == null) {
+			String destPage = "frontend/message.jsp";
+			String message = "Sorry, the book with ID " + bookId + " is not available.";
+			request.setAttribute("message", message);
+		}
+		List<Category> listCategory = categoryDAO.listAll();
+		request.setAttribute("listCategory", listCategory);
 		request.setAttribute("book", book);
-
 		String detailPage = "frontend/book_detail.jsp";
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(detailPage);
 		requestDispatcher.forward(request, response);

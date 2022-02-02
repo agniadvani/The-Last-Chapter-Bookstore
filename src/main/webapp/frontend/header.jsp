@@ -3,6 +3,7 @@
 	<div>
 		<a href="/website"><img src="${pageContext.request.contextPath}/images/BookStoreLogo.png"></a>
 	</div>
+	<br><br>
 	<div>
 		<input type="text" name="keyword" size="50" /> <input type="button"
 			value="Search" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a
