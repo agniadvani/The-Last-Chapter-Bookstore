@@ -197,4 +197,40 @@ public class BookDAOTest {
 		}
 		assertEquals(4, listNewBooks.size());
 	}
+
+	@Test
+	public void testSearchBookInTitle() {
+		String keyword = "Java";
+		List<Book> result = bookDao.search(keyword);
+
+		for (Book aBook : result) {
+			System.out.println(aBook.getTitle());
+		}
+
+		assertEquals(6, result.size());
+	}
+
+	@Test
+	public void testSearchBookInAuthor() {
+		String keyword = "Kathy";
+		List<Book> result = bookDao.search(keyword);
+
+		for (Book aBook : result) {
+			System.out.println(aBook.getTitle());
+		}
+
+		assertEquals(1, result.size());
+	}
+
+	@Test
+	public void testSearchBookInDescription() {
+		String keyword = "The Big Picture";
+		List<Book> result = bookDao.search(keyword);
+
+		for (Book aBook : result) {
+			System.out.println(aBook.getTitle());
+		}
+
+		assertEquals(1, result.size());
+	}
 }

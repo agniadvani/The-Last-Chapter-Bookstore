@@ -1,14 +1,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div align="center">
 	<div>
-		<a href="/website"><img src="${pageContext.request.contextPath}/images/BookStoreLogo.png"></a>
+		<a href="/website"><img
+			src="${pageContext.request.contextPath}/images/BookStoreLogo.png"></a>
 	</div>
-	<br><br>
+	<br>
+	<br>
 	<div>
-		<input type="text" name="keyword" size="50" /> <input type="button"
-			value="Search" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a
-			href="Login">Sign in</a> | <a href="register">Register</a> | <a
-			href="view_cart">Cart</a>
+		<form action="search" method="get">
+			<input type="text" name="keyword" size="50"
+				placeholder="Search Books" /> <input type="submit" value="Search" />
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="Login">Sign in</a> | <a
+				href="register">Register</a> | <a href="view_cart">Cart</a>
+		</form>
 	</div>
 	<div>&nbsp;</div>
 	<div>
