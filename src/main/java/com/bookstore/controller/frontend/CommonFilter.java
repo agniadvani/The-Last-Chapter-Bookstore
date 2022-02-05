@@ -10,14 +10,14 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
-import javax.servlet.http.HttpFilter;
+import javax.servlet.http.HttpServletRequest;
 
 import com.bookstore.dao.CategoryDAO;
 import com.bookstore.entity.Category;
-import com.bookstore.service.CategoryServices;
 
 @WebFilter("/*")
-public class CommonFilter extends HttpFilter implements Filter {
+public class CommonFilter implements Filter {
+
 	private final CategoryDAO categoryDAO;
 
 	public CommonFilter() {
@@ -29,9 +29,14 @@ public class CommonFilter extends HttpFilter implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		List<Category> listCategory = categoryDAO.listAll();
-		request.setAttribute("listCategory", listCategory);
-		
+		HttpServletRequest httpRequest = (HttpServletRequest) request;
+		String path = httpRequest.getRequestURI().substring(httpRequest.getContextPath().length());
+
+		if (!path.startsWith("/admin/")) {
+			List<Category> listCategory = categoryDAO.listAll();
+			request.setAttribute("listCategory", listCategory);
+		}
+
 		chain.doFilter(request, response);
 	}
 

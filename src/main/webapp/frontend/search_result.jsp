@@ -13,7 +13,7 @@
 <body>
 
 	<jsp:directive.include file="header.jsp" />
-	<div align="center">
+	<div class="center">
 		<br /> <br />
 		<c:if test="${fn:length(result)==0}">
 			<h2>No Results found for keyword "${keyword}"</h2>
@@ -25,8 +25,8 @@
 			<br>
 			<br>
 			<br>
-			<div align="center"
-				style="width: 49%; margin: 0 auto; border-style: double;">
+			<div class="center"
+				style="width: 55%; margin: 0 auto; border-style: double;">
 				<h3>Here's Our Latest Collection:</h3>
 				<c:forEach items="${newBooks}" var="book">
 					<div style="display: inline-block; margin: 20px;">
@@ -52,26 +52,29 @@
 			</div>
 		</c:if>
 		<c:if test="${fn:length(result)>0}">
-			<div align="left" style="width: 80%; margin: 0 auto;">
-				<center><h2>
-					Results for <b>"${keyword}"</b> :
-				</h2></center>
+			<div class="book_group">
+				<center>
+					<h2>
+						Results for <b>"${keyword}"</b> :
+					</h2>
+				</center>
 				<br>
 				<c:forEach items="${result}" var="book">
 					<div>
-						<div style="display: inline-block; margin: 20px; width: 10%;" >
+						<div id="search-image">
 
 							<div align="left">
 								<a href="view_book?id=${book.bookId}"><img
-									src="data:image/jpg;base64,${book.base64Image}" width="128"
-									height="164" /></a>
+									class="book-small"
+									src="data:image/jpg;base64,${book.base64Image}" /></a>
 							</div>
 						</div>
 
-						<div
-							style="display: inline-block; margin: 20px; vertical-align: top; width: 60%" align="left">
+						<div id="search-description">
 							<div>
-								<a href="view_book?id=${book.bookId}"><h2><b>${book.title}</b></h2></a>
+								<a href="view_book?id=${book.bookId}"><h2>
+										<b>${book.title}</b>
+									</h2></a>
 							</div>
 							<div>Rating *****</div>
 							<div>
@@ -81,9 +84,13 @@
 								<p>${fn:substring(book.description, 0,100)}...</p>
 							</div>
 						</div>
-						<div
-							style="display: inline-block; margin: 20px; vertical-align: top;">
-							<h3><b>Rs. ${book.price}</b></h3> <h3><a href="">Add To Cart</a></h3>
+						<div id="search-price">
+							<h3>
+								<b>Rs. ${book.price}</b>
+							</h3>
+							<h3>
+								<a href="">Add To Cart</a>
+							</h3>
 						</div>
 					</div>
 					<hr>
