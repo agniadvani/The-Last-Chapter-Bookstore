@@ -200,8 +200,6 @@ public class BookServices {
 		}
 
 		CategoryDAO categoryDAO = new CategoryDAO();
-		List<Category> listCategory = categoryDAO.listAll();
-		request.setAttribute("listCategory", listCategory);
 		List<Book> listBooks = bookDAO.listByCategory(categoryId);
 		request.setAttribute("listBooks", listBooks);
 		request.setAttribute("category", category);
@@ -218,8 +216,6 @@ public class BookServices {
 			String message = "Sorry, the book with ID " + bookId + " is not available.";
 			request.setAttribute("message", message);
 		}
-		List<Category> listCategory = categoryDAO.listAll();
-		request.setAttribute("listCategory", listCategory);
 		request.setAttribute("book", book);
 		String detailPage = "frontend/book_detail.jsp";
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(detailPage);

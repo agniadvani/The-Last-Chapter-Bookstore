@@ -28,9 +28,7 @@ public class HomeServlet extends HttpServlet {
 			throws ServletException, IOException {
 		CategoryDAO categoryDAO = new CategoryDAO();
 		BookDAO bookDAO = new BookDAO();
-		List<Category> listCategory = categoryDAO.listAll();
 		List<Book> listNewBooks = bookDAO.listNewBooks();
-		request.setAttribute("listCategory", listCategory);
 		request.setAttribute("listNewBooks", listNewBooks);
 		String page = "frontend/index.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(page);
