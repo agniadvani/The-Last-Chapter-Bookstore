@@ -50,8 +50,10 @@ th {
 	font-size: larger;
 }
 
-form.table {
+table.form {
 	border: 0;
+	padding: 4px;
+	width: 80%;
 }
 
 button {
@@ -59,12 +61,11 @@ button {
 	border-radius: 5px;
 }
 
-
 button[type=submit] {
 	font-weight: bold;
 }
 
- button:hover {
+button:hover {
 	background-color: white;
 	color: green;
 }
@@ -160,4 +161,3 @@ img.book-large {
 	margin: 20px;
 	vertical-align: top;
 }
-

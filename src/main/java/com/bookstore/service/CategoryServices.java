@@ -115,19 +115,20 @@ public class CategoryServices {
 			return;
 		}
 
-//		BookDAO bookDAO = new BookDAO();
-//		long numberOfBooks = bookDAO.countByCategory(categoryId);
-//
-//		if (numberOfBooks > 0) {
-//			message = "Could not delete the category (ID: %d) because it currently contains some books.";
-//			message = String.format(message, numberOfBooks);
-//		} else {
-//			categoryDAO.delete(categoryId);
-//			message = "The category with ID " + categoryId + " has been removed successfully.";
-//		}
-		categoryDAO.delete(categoryId);
-		message = "The category with ID " + categoryId + " has been removed successfully.";
-		listCategory(message);
+		BookDAO bookDAO = new BookDAO();
+		long numberOfBooks = bookDAO.countByCategory(categoryId);
+
+		if (numberOfBooks > 0) {
+			message = "Could not delete the category ID: " + categoryId + " because it currently contains some books.";
+			message = String.format(message, numberOfBooks);
+			request.setAttribute("message", message);
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("message.jsp");
+			requestDispatcher.forward(request, response);
+		} else {
+			categoryDAO.delete(categoryId);
+			message = "The category with ID " + categoryId + " has been removed successfully.";
+			listCategory(message);
+		}
 
 	}
 
