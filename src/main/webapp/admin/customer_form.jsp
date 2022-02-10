@@ -30,7 +30,7 @@
 	<div align="center">
 		<c:if test="${customer != null}">
 			<form action="update_customer" method="post" id="customerForm">
-				<input type="hidden" name="bookId" value="${customer.customerId}" />
+				<input type="hidden" name="customerId" value="${customer.customerId}" />
 		</c:if>
 		<c:if test="${customer == null}">
 			<form action="create_customer" method="post" id="customerForm">
@@ -110,7 +110,10 @@
 				},
 
 				fullName : "required",
-				password : "required",
+				password : {
+					required : true,
+					equalTo : "#confirmPassword",
+				},
 				confirmPassword : {
 					required : true,
 					equalTo : "#password",
@@ -118,7 +121,7 @@
 				phone : "required",
 				address : "required",
 				city : "required",
-				state: "required",
+				state : "required",
 				zipcode : "required",
 				country : "required",
 			},
@@ -130,9 +133,12 @@
 				},
 
 				fullName : "Please enter full name",
-				password : "Please enter password",
+				password : {
+					required : "Please enter password",
+					equalTo : "Passwords do not match"
+				},
 				confirmPassword : {
-					required: "Please confirm password",
+					required : "Please confirm password",
 					equalTo : "Passwords do not match"
 				},
 				phone : "Please enter phone number",

@@ -128,10 +128,16 @@ public class CustomerServices {
 	public void editCustomer() throws ServletException, IOException {
 		Integer customerId = Integer.parseInt(request.getParameter("id"));
 		Customer customer = customerDAO.get(customerId);
-
+		if (customer == null) {
+			String message = "Could not find customer with ID " + customerId;
+			request.setAttribute("message", message);
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("message.jsp");
+			requestDispatcher.forward(request, response);
+			return;
+		}
 		request.setAttribute("customer", customer);
 
-		CommonUtility.generateCountryList(request);
+		// CommonUtility.generateCountryList(request);
 
 		String editPage = "customer_form.jsp";
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(editPage);
@@ -164,8 +170,16 @@ public class CustomerServices {
 
 	public void deleteCustomer() throws ServletException, IOException {
 		Integer customerId = Integer.parseInt(request.getParameter("id"));
+		Customer customer = customerDAO.get(customerId);
+		if (customer == null) {
+			String message = "Could not find customer with ID " + customerId + ", "
+					+ "or it has been deleted by another admin";
+			request.setAttribute("message", message);
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("message.jsp");
+			requestDispatcher.forward(request, response);
+			return;
+		}
 		customerDAO.delete(customerId);
-
 		String message = "The customer has been deleted successfully.";
 		listCustomers(message);
 	}
