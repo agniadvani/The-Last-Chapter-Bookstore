@@ -53,7 +53,10 @@ public class CustomerServices {
 		if (existCustomer != null) {
 			String message = "Could not create new customer: the email " + email
 					+ " is already registered by another customer.";
-			listCustomers(message);
+			String listPage = "message.jsp";
+			request.setAttribute("message", message);
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher(listPage);
+			requestDispatcher.forward(request, response);
 
 		} else {
 			Customer newCustomer = new Customer();
@@ -70,15 +73,15 @@ public class CustomerServices {
 	private void updateCustomerFieldsFromForm(Customer customer) {
 		String email = request.getParameter("email");
 //		String firstname = request.getParameter("firstname");
-		String fullname = request.getParameter("fullname");
+		String fullname = request.getParameter("fullName");
 //		String lastname = request.getParameter("lastname");
 		String password = request.getParameter("password");
 		String phone = request.getParameter("phone");
-		String address = request.getParameter("address1");
+		String address = request.getParameter("address");
 //		String addressLine2 = request.getParameter("address2");
 		String city = request.getParameter("city");
 		String state = request.getParameter("state");
-		String zipCode = request.getParameter("zipCode");
+		String zipCode = request.getParameter("zipcode");
 		String country = request.getParameter("country");
 
 		if (email != null && !email.equals("")) {

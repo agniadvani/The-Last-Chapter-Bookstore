@@ -95,7 +95,7 @@ public class CustomerDAOTest {
 	public void testFindByEmail() {
 		String email = "diganth@gmail.com";
 		Customer customer = customerDao.findByEmail(email);
-
+		
 		assertNotNull(customer);
 
 	}

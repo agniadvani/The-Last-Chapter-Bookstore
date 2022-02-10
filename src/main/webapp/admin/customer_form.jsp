@@ -7,15 +7,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Create New User</title>
+<title>Create New Customer</title>
 <link rel="stylesheet" href="../css/style.css">
-<link rel="stylesheet" href="../css/jquery-ui.min.css">
-<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="../css/richtext.min.css">
 <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="../js/jquery.validate.min.js"></script>
-<script type="text/javascript" src="../js/jquery-ui.min.js"></script>
-<script type="text/javascript" src="../js/jquery.richtext.min.js"></script>
 
 </head>
 <body>
@@ -23,87 +18,81 @@
 
 	<div align="center">
 		<h2 class="pageheading">
-			<c:if test="${Book != null}">
-				Edit Book
+			<c:if test="${customer != null}">
+				Edit Customer
 			</c:if>
-			<c:if test="${Book == null}">
-				Create New Book
+			<c:if test="${customer == null}">
+				Create New Customer
 			</c:if>
 		</h2>
 	</div>
 
 	<div align="center">
-		<c:if test="${book != null}">
-			<form action="update_book" method="post" id="bookForm"
-				enctype="multipart/form-data">
-				<input type="hidden" name="bookId" value="${book.bookId}" />
+		<c:if test="${customer != null}">
+			<form action="update_customer" method="post" id="customerForm">
+				<input type="hidden" name="bookId" value="${customer.customerId}" />
 		</c:if>
-		<c:if test="${book == null}">
-			<form action="create_book" method="post" id="bookForm"
-				enctype="multipart/form-data">
+		<c:if test="${customer == null}">
+			<form action="create_customer" method="post" id="customerForm">
 		</c:if>
 
-		<table class = "form">
+		<table class="form">
 			<tr>
-				<td>Category:</td>
-				<td><select name="category">
-						<c:forEach items="${listCategory}" var="category">
-							<c:if test="${category.categoryId eq book.category.categoryId}">
-								<option value="${category.categoryId}" selected>
-							</c:if>
-							<c:if test="${category.categoryId ne book.category.categoryId}">
-								<option value="${category.categoryId}">
-							</c:if>
-							${category.name}
-							</option>
-						</c:forEach>
-				</select></td>
+				<td align="right">Email:</td>
+				<td align="left"><input type="text" id="email" name="email"
+					size="45" value="${customer.email}" /></td>
 			</tr>
 			<tr>
-				<td align="right">Title:</td>
-				<td align="left"><input type="text" id="title" name="title"
-					size="20" value="${book.title}" /></td>
+				<td align="right">Full Name:</td>
+				<td align="left"><input type="text" id="fullName"
+					name="fullName" size="45" value="${customer.fullname}" /></td>
 			</tr>
 			<tr>
-				<td align="right">Author:</td>
-				<td align="left"><input type="text" id="author" name="author"
-					size="20" value="${book.author}" /></td>
+				<td align="right">Password:</td>
+				<td align="left"><input type="password" id="password"
+					name="password" size="45" value="${customer.password}" /></td>
 			</tr>
 			<tr>
-				<td align="right">ISBN:</td>
-				<td align="left"><input type="text" id="isbn" name="isbn"
-					size="20" value="${book.isbn}" /></td>
+				<td align="right">Confirm Password:</td>
+				<td align="left"><input type="password" id="confirmPassword"
+					name="confirmPassword" size="45" value="${customer.password}" /></td>
 			</tr>
 			<tr>
-				<td align="right">Publish Date:</td>
-				<td align="left"><input type="text" id="publishDate"
-					name="publishDate" size="20"
-					value="<fmt:formatDate pattern="MM/dd/yy" value='${book.publishDate}' />" /></td>
+				<td align="right">Phone Number:</td>
+				<td align="left"><input type="text" id="phone" name="phone"
+					size="45" value="${customer.phone}" /></td>
 			</tr>
 			<tr>
-				<td align="right">Book Image:</td>
-				<td align="left"><input type="file" id="bookImage"
-					name="bookImage" size="20" /><br /> <img alt="Image Preview"
-					id="thumbnail" style="width: 20%; margin-top: 10px;"
-					src="data:image/jpg;base64,${book.base64Image}"></td>
+				<td align="right">Address:</td>
+				<td align="left"><input type="text" id="address" name="address"
+					size="45" value="${customer.address}" /></td>
 			</tr>
 			<tr>
-				<td align="right">Price:</td>
-				<td align="left"><input type="text" id="price" name="price"
-					size="20" value="${book.price}" /></td>
+				<td align="right">City:</td>
+				<td align="left"><input type="text" id="city" name="city"
+					size="45" value="${customer.city}" /></td>
 			</tr>
 			<tr>
-				<td align="right">Description:</td>
-				<td align="left"><textarea rows="5" cols="50"
-						name="description" id="description">${book.description}</textarea></td>
+				<td align="right">State:</td>
+				<td align="left"><input type="text" id="state" name="state"
+					size="45" value="${customer.state}" /></td>
+			</tr>
+			<tr>
+				<td align="right">Zip Code:</td>
+				<td align="left"><input type="text" id="zipcode" name="zipcode"
+					size="45" value="${customer.zipcode}" /></td>
+			</tr>
+			<tr>
+				<td align="right">Country:</td>
+				<td align="left"><input type="text" id="country" name="country"
+					size="45" value="${customer.country}" /></td>
 			</tr>
 			<tr>
 				<td>&nbsp;</td>
 			</tr>
 		</table>
-		<br>
-		<br> <input type="submit" value="Save">&nbsp;&nbsp;&nbsp;
-		<a href="list_books"><input type="button" value="Cancel"></a>
+		<br> <br> <input type="submit" value="Save">&nbsp;&nbsp;&nbsp;
+		<a href="list_customer"><input type="button" value="Cancel"></a>
 		</td>
 
 		</form>
@@ -112,60 +101,48 @@
 	<jsp:directive.include file="footer.jsp" />
 </body>
 <script type="text/javascript">
-
 	$(document).ready(function() {
-		
-		   $("#publishDate").datepicker();
-		   $('#description').richText();
-		   
-			$('#bookImage').change(function() {
-				showImageThumbnail(this);
-			});
-			
-	
-			$("#bookForm").validate({
-				rules: {
-					category: "required",
-					title: "required",
-					author: "required",
-					isbn: "required",
-					publishDate: "required",
-					
-					<c:if test="${book == null}">
-					bookImage: "required",
-					</c:if>
-					
-					price: "required",
-					description: "required",
+		$("#customerForm").validate({
+			rules : {
+				email : {
+					required : true,
+					email : true
 				},
-				
-				messages: {
-					category: "Please select a category for the book",
-					title: "Please enter title of the book",
-					author: "Please enter author of the book",
-					isbn: "Please enter ISBN of the book",
-					publishDate: "Please enter publish date of the book",
-					bookImage: "Please choose an image of the book",
-					price: "Please enter price of the book",
-					description: "Please enter description of the book"
-				}
-			});
-			
-		
+
+				fullName : "required",
+				password : "required",
+				confirmPassword : {
+					required : true,
+					equalTo : "#password",
+				},
+				phone : "required",
+				address : "required",
+				city : "required",
+				state: "required",
+				zipcode : "required",
+				country : "required",
+			},
+
+			messages : {
+				email : {
+					required : "Please enter email",
+					email : "Please enter a valid email address"
+				},
+
+				fullName : "Please enter full name",
+				password : "Please enter password",
+				confirmPassword : {
+					required: "Please confirm password",
+					equalTo : "Passwords do not match"
+				},
+				phone : "Please enter phone number",
+				address : "Please enter address",
+				city : "Please enter city",
+				state : "Please enter state",
+				zipcode : "Please enter zipcode",
+				country : "Please enter country",
+			},
+		});
 	});
-	function showImageThumbnail(fileInput) {
-		var file = fileInput.files[0];
-		
-		var reader = new FileReader();
-		
-		reader.onload = function(e) {
-			$('#thumbnail').attr('src', e.target.result);
-		};
-		
-		reader.readAsDataURL(file);
-	
-   }
-	
-		
 </script>
 </html>
