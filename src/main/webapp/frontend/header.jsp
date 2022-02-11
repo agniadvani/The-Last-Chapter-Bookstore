@@ -10,7 +10,7 @@
 		<form action="search" method="get">
 			<input type="text" name="keyword" size="50"
 				placeholder="Search Books" /> <input type="submit" value="Search" />
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="Login">Sign in</a> | <a
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="login">Sign in</a> | <a
 				href="register">Register</a> | <a href="view_cart">Cart</a>
 		</form>
 	</div>
