@@ -102,8 +102,8 @@ public class CustomerDAOTest {
 
 	@Test
 	public void testCheckLoginSuccess() {
-		String email = "billy.jane@gmail.com";
-		String password = "secret";
+		String email = "hp@hogwarts.com";
+		String password = "hedwig";
 
 		Customer customer = customerDao.checkLogin(email, password);
 
@@ -113,8 +113,8 @@ public class CustomerDAOTest {
 
 	@Test
 	public void testCheckLoginFail() {
-		String email = "abc@gmail.com";
-		String password = "secret";
+		String email = "hp@ssss.com";
+		String password = "hedwig";
 
 		Customer customer = customerDao.checkLogin(email, password);
 
