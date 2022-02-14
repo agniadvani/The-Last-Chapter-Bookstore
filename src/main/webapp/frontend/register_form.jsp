@@ -95,6 +95,7 @@
 			});
 
 		});
+		
 		$("#customerForm").validate({
 			rules : {
 				email : {
