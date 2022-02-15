@@ -234,7 +234,8 @@ public class CustomerServices {
 		Customer customer = (Customer) request.getSession().getAttribute("loggedCustomer");
 		updateCustomerFieldsFromForm(customer);
 		customerDAO.update(customer);
-
+		String message = "Profile updated successfully!";
+		request.setAttribute("message", message);
 		showCustomerProfile();
 
 	}
