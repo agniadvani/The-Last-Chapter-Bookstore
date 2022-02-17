@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="css/style.css">
 <script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="js/jquery.validate.min.js"></script>
-<script src="js/jquery-input-mask-phone-number.min.js"></script>
+<script type="text/javascript" src="js/jquery-input-mask-phone-number.min.js"></script>
 
 </head>
 <body>

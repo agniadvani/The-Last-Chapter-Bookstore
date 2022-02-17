@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,7 +50,8 @@
 					<td>${review.rating}</td>
 					<td>${review.headline}</td>
 					<td>${review.customer.fullname}</td>
-					<td>${review.reviewTime}</td>
+					<td align="center"><fmt:formatDate pattern="dd-MM-yy"
+							value='${review.reviewTime}' /></td>
 					<td><a href="edit_review?id=${review.reviewId}">Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;<a
 						href="javascript:void(0);" class="deleteLink"
 						id="${review.reviewId}">Delete</a></td>

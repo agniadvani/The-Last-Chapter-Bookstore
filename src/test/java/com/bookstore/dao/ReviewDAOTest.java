@@ -17,7 +17,7 @@ import com.bookstore.entity.Review;
 public class ReviewDAOTest {
 
 	private static ReviewDAO reviewDao;
-	
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		reviewDao = new ReviewDAO();
@@ -33,19 +33,18 @@ public class ReviewDAOTest {
 		Review review = new Review();
 		Book book = new Book();
 		book.setBookId(15);
-		
+
 		Customer customer = new Customer();
-		customer.setCustomerId(22);
-		
+		customer.setCustomerId(24);
+
 		review.setBook(book);
 		review.setCustomer(customer);
-		
-		review.setHeadline("One time read.");
-		review.setRating(3);
-		review.setComment("Too many cliche about dream lifestyle which is very time consuming to follow.");
-		
+
+		review.setHeadline(" As good as gold.");
+		review.setRating(4);
+		review.setComment("This book is just fantastic!!");
 		Review savedReview = reviewDao.create(review);
-		
+
 		assertTrue(savedReview.getReviewId() > 0);
 	}
 
@@ -53,7 +52,7 @@ public class ReviewDAOTest {
 	public void testGet() {
 		Integer reviewId = 1;
 		Review review = reviewDao.get(reviewId);
-		
+
 		assertNotNull(review);
 	}
 
@@ -62,34 +61,33 @@ public class ReviewDAOTest {
 		Integer reviewId = 1;
 		Review review = reviewDao.get(reviewId);
 		review.setHeadline("Excellent book");
-		
+
 		Review updatedReview = reviewDao.update(review);
-		
+
 		assertEquals(review.getHeadline(), updatedReview.getHeadline());
-		
+
 	}
-	
+
 	@Test
 	public void testDeleteReview() {
 		int reviewId = 2;
 		reviewDao.delete(reviewId);
-		
+
 		Review review = reviewDao.get(reviewId);
-		
+
 		assertNull(review);
-		
+
 	}
 
 	@Test
 	public void testListAll() {
 		List<Review> listReview = reviewDao.listAll();
-		
+
 		for (Review review : listReview) {
-			System.out.println(review.getReviewId() + " - " + review.getBook().getTitle()
-					+ " - " + review.getCustomer().getfullname()
-					+ " - " + review.getHeadline() + " - " + review.getRating());
+			System.out.println(review.getReviewId() + " - " + review.getBook().getTitle() + " - "
+					+ review.getCustomer().getfullname() + " - " + review.getHeadline() + " - " + review.getRating());
 		}
-		
+
 		assertTrue(listReview.size() > 0);
 	}
 
@@ -97,34 +95,34 @@ public class ReviewDAOTest {
 	public void testCount() {
 		long totalReviews = reviewDao.count();
 		System.out.println("Total Reviews: " + totalReviews);
-		assertTrue(totalReviews > 0 );
+		assertTrue(totalReviews > 0);
 	}
 
 	@Test
 	public void testFindByCustomerAndBookNotFound() {
 		Integer customerId = 100;
 		Integer bookId = 99;
-		
+
 		Review result = reviewDao.findByCustomerAndBook(customerId, bookId);
-		
+
 		assertNull(result);
 	}
-	
+
 	@Test
 	public void testFindByCustomerAndBookFound() {
 		Integer customerId = 8;
 		Integer bookId = 2;
-		
+
 		Review result = reviewDao.findByCustomerAndBook(customerId, bookId);
-		
+
 		assertNotNull(result);
 	}
-	
+
 	@Test
 	public void testListMostRecent() {
 		List<Review> recentReviews = reviewDao.listMostRecent();
-		
+
 		assertEquals(3, recentReviews.size());
 	}
-	
+
 }

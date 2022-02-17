@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,7 +41,7 @@
 							<a href="view_book?id=${book.bookId}"> <b>${book.title}</b>
 							</a>
 						</div>
-						<div>Rating *****</div>
+						<div><jsp:directive.include file="book_ratings.jsp" /></div>
 						<div>
 							<i>by ${book.author}</i>
 						</div>
@@ -76,7 +77,7 @@
 										<b>${book.title}</b>
 									</h2></a>
 							</div>
-							<div>Rating *****</div>
+							<div><jsp:directive.include file="book_ratings.jsp" /></div>
 							<div>
 								<i>by ${book.author}</i>
 							</div>

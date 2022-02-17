@@ -42,11 +42,11 @@
 		</div>
 
 		<div class="next-row">
-			<h2>Best Selling Books</h2>
+			<h2>Best Selling Books:</h2>
 		</div>
 
 		<div class="next-row">
-			<h2>Most favoured books</h2>
+			<h2>Most favoured books:</h2>
 		</div>
 		<br /> <br />
 	</div>
