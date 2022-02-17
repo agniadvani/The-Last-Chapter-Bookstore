@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Manage Category - The Last Chapter Administration</title>
+<title>Manage Review - The Last Chapter Administration</title>
 <link rel="stylesheet" href="../css/style.css">
 <script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="../js/jquery.validate.min.js"></script>
