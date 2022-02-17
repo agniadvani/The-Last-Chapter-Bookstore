@@ -78,7 +78,7 @@
 																	if (confirm('Are you sure you want to delete the Review with ID '
 																			+ reviewId
 																			+ '?')) {
-																		window.location = 'delete_category?id='
+																		window.location = 'delete_review?id='
 																				+ reviewId;
 																	}
 																});

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.bookstore.entity.Customer;
 import com.bookstore.entity.Review;
 
 public class ReviewDAO extends JpaDAO<Review> implements GenericDAO<Review> {
@@ -51,6 +52,10 @@ public class ReviewDAO extends JpaDAO<Review> implements GenericDAO<Review> {
 	
 	public List<Review> listMostRecent() {
 		return super.findWithNamedQuery("Review.listAll", 0, 3);
+	}
+	
+	public long countByCustomer(int customerId) {
+		return super.countWithNamedQuery("Review.countByCustomer", "customerId", customerId);
 	}
 
 }

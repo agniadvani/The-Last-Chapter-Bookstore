@@ -63,7 +63,7 @@ public class ReviewServices {
 		String comment = request.getParameter("comment");
 
 		Review review = reviewDAO.get(reviewId);
-		if (review==null) {
+		if (review == null) {
 			String message = "Could not find review with ID " + reviewId;
 			request.setAttribute("message", message);
 			RequestDispatcher rd = request.getRequestDispatcher("message.jsp");
@@ -84,7 +84,14 @@ public class ReviewServices {
 	public void deleteReview() throws ServletException, IOException {
 		Integer reviewId = Integer.parseInt(request.getParameter("id"));
 		reviewDAO.delete(reviewId);
-
+		Review review = reviewDAO.get(reviewId);
+		if (review == null) {
+			String message = "Could not find review with ID " + reviewId + " or it might have been deleted by another admin.";
+			request.setAttribute("message", message);
+			RequestDispatcher rd = request.getRequestDispatcher("message.jsp");
+			rd.forward(request, response);
+			return;
+		}
 		String message = "The review has been deleted successfully.";
 
 		listAllReview(message);

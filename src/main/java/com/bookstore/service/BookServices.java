@@ -177,9 +177,17 @@ public class BookServices {
 		Integer bookId = Integer.parseInt(request.getParameter("id"));
 		Book book = bookDAO.get(bookId);
 		if (book == null) {
-			String destPage = "message.jsp";
 			String message = "Could not find book with ID " + bookId;
 			request.setAttribute("message", message);
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("message.jsp");
+			requestDispatcher.forward(request, response);
+			return;
+		}
+		if (!book.getReviews().isEmpty()) {
+			String message = "Could not delete the book with ID " + bookId + " because it has reviews";
+			request.setAttribute("message", message);
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("message.jsp");
+			requestDispatcher.forward(request, response);
 			return;
 		}
 		bookDAO.delete(bookId);

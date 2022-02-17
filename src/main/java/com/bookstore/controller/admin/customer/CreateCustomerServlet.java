@@ -6,8 +6,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.bookstore.dao.CustomerDAO;
 import com.bookstore.service.CustomerServices;
 
 @WebServlet("/admin/create_customer")

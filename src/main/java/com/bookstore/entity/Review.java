@@ -24,6 +24,7 @@ import javax.persistence.Transient;
 @Table(name = "review", catalog = "bookstoredb")
 @NamedQueries({ @NamedQuery(name = "Review.listAll", query = "SELECT r FROM Review r ORDER BY r.reviewTime DESC"),
 		@NamedQuery(name = "Review.countAll", query = "SELECT COUNT(r) FROM Review r"),
+		@NamedQuery(name = "Review.countByCustomer", query = "SELECT COUNT(r.reviewId) FROM Review r WHERE r.customer.customerId =:customerId"),
 		@NamedQuery(name = "Review.findByCustomerAndBook", query = "SELECT r FROM Review r WHERE r.customer.customerId =:customerId"
 				+ " AND r.book.bookId =:bookId"),
 		@NamedQuery(name = "Review.mostFavoredBooks", query = "SELECT r.book, COUNT(r.book.bookId) AS ReviewCount, AVG(r.rating) as AvgRating FROM Review r "
