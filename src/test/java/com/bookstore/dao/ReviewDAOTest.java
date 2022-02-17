@@ -32,7 +32,7 @@ public class ReviewDAOTest {
 	public void testCreateReview() {
 		Review review = new Review();
 		Book book = new Book();
-		book.setBookId(14);
+		book.setBookId(15);
 		
 		Customer customer = new Customer();
 		customer.setCustomerId(22);
@@ -40,9 +40,9 @@ public class ReviewDAOTest {
 		review.setBook(book);
 		review.setCustomer(customer);
 		
-		review.setHeadline("Amazing!");
-		review.setRating(5);
-		review.setComment("A brief look into India's breif culture! A must Read!");
+		review.setHeadline("One time read.");
+		review.setRating(3);
+		review.setComment("Too many cliche about dream lifestyle which is very time consuming to follow.");
 		
 		Review savedReview = reviewDao.create(review);
 		

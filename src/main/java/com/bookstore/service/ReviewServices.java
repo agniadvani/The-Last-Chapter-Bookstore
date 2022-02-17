@@ -49,7 +49,13 @@ public class ReviewServices {
 	public void editReview() throws ServletException, IOException {
 		Integer reviewId = Integer.parseInt(request.getParameter("id"));
 		Review review = reviewDAO.get(reviewId);
-
+		if (review == null) {
+			String message = "Could not find review with ID " + reviewId;
+			request.setAttribute("message", message);
+			RequestDispatcher rd = request.getRequestDispatcher("message.jsp");
+			rd.forward(request, response);
+			return;
+		}
 		request.setAttribute("review", review);
 
 		String editPage = "review_form.jsp";
@@ -63,13 +69,7 @@ public class ReviewServices {
 		String comment = request.getParameter("comment");
 
 		Review review = reviewDAO.get(reviewId);
-		if (review == null) {
-			String message = "Could not find review with ID " + reviewId;
-			request.setAttribute("message", message);
-			RequestDispatcher rd = request.getRequestDispatcher("message.jsp");
-			rd.forward(request, response);
-			return;
-		}
+
 		review.setHeadline(headline);
 		review.setComment(comment);
 
@@ -83,15 +83,17 @@ public class ReviewServices {
 
 	public void deleteReview() throws ServletException, IOException {
 		Integer reviewId = Integer.parseInt(request.getParameter("id"));
-		reviewDAO.delete(reviewId);
+	
 		Review review = reviewDAO.get(reviewId);
 		if (review == null) {
-			String message = "Could not find review with ID " + reviewId + " or it might have been deleted by another admin.";
+			String message = "Could not find review with ID " + reviewId
+					+ " or it might have been deleted by another admin.";
 			request.setAttribute("message", message);
 			RequestDispatcher rd = request.getRequestDispatcher("message.jsp");
 			rd.forward(request, response);
 			return;
 		}
+		reviewDAO.delete(reviewId);
 		String message = "The review has been deleted successfully.";
 
 		listAllReview(message);

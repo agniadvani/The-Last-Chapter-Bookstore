@@ -22,8 +22,11 @@
 			<tr>
 				<td rowspan="2"><img class="book-large"
 					src="data:image/jpg;base64,${book.base64Image}" /></td>
-
-				<td valign="top" align="left">Rating *****</td>
+				
+				
+			
+				<td valign="top" align="left"><jsp:directive.include
+						file="book_ratings.jsp" /></td>
 				<td valign="top" rowspan="2" width="20%"><h2>Rs.
 						${book.price}</h2> <br /> <br />
 					<button type="submit">Add to Cart</button></td>
