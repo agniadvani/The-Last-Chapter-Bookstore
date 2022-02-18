@@ -68,7 +68,7 @@
 							</tr>
 							<tr>
 								<td>by ${review.customer.fullname} on <fmt:formatDate
-							pattern="dd-MM-yy" value='${review.reviewTime}' /> 
+										pattern="dd-MM-yy" value='${review.reviewTime}' />
 								</td>
 							</tr>
 							<tr>
@@ -88,5 +88,16 @@
 
 
 	<jsp:directive.include file="footer.jsp" />
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#buttonWriteReview").click(function() {
+				window.location = 'write_review?book_id=' + ${book.bookId};
+			});
+
+			$("#buttonAddToCart").click(function() {
+				window.location = 'add_to_cart?book_id=' + ${book.bookId};
+			});
+		});
+	</script>
 </body>
 </html>

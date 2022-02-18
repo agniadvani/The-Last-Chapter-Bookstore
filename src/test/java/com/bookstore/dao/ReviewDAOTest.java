@@ -110,10 +110,12 @@ public class ReviewDAOTest {
 
 	@Test
 	public void testFindByCustomerAndBookFound() {
-		Integer customerId = 8;
-		Integer bookId = 2;
+		Integer customerId = 21;
+		Integer bookId = 6;
 
 		Review result = reviewDao.findByCustomerAndBook(customerId, bookId);
+		System.out.println("Customer name - "+ result.getCustomer().getfullname());
+		System.out.println("Book name - "+ result.getBook().getTitle());
 
 		assertNotNull(result);
 	}
