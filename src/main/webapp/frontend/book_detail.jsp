@@ -9,6 +9,7 @@
 <meta charset="ISO-8859-1">
 <title>${book.title}</title>
 <link rel="stylesheet" href="css/style.css">
+<script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 
@@ -47,7 +48,7 @@
 						<a id="reviews">Customer Reviews</a>
 					</h2></td>
 				<td colspan="2" align="center">
-					<button>Write a Customer Review</button>
+					<button id="buttonWriteReview">Write a Customer Review</button>
 				</td>
 			</tr>
 			<tr>
