@@ -33,36 +33,36 @@
 						<img class="book-large"
 						src="data:image/jpg;base64,${book.base64Image}" /></td>
 					<td>  
-						<div id="rateYo"></div> <input id="raing" type="hidden"
-						name="rating" /> <br> <input type="text" name="headine"
-						size="60" placeholder="Headline (required)" /> <br> <br>
-						<textarea name="comment" cols="70" rows="10"
+						<div id="rateYo" name="rating"></div> <input id="raing" type="hidden"
+						name="rating" /> <input type="hidden" name="bookId"
+						value="${book.bookId}" /> <br> <input type="text"
+						name="headline" size="60" placeholder="Headline (required)" /> <br>
+						<br> <textarea name="comment" cols="70" rows="10"
 							placeholder="Write a review..."></textarea>
 					</td>
 				</tr>
 			</table>
+			<br> <br> <input type="submit" value="Save">&nbsp;&nbsp;&nbsp;
+			<a href="view_book?id=${book.bookId}"><input type="button"
+				value="Cancel"></a>
 		</form>
 	</div>
 	<jsp:directive.include file="footer.jsp" />
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$("#loginForm").validate({
+			$("#reviewForm").validate({
 				rules : {
-					email : {
-						required : true,
-						email : true
-					},
 
-					password : "required",
+					headline : "required",
+					comment : "required",
+					rating: "required",
 				},
 
 				messages : {
-					email : {
-						required : "Please enter email",
-						email : "Please enter a valid email address"
-					},
 
-					password : "Please enter password"
+					headline : "Please enter a headline.",
+					comment : "Please enter a comment.",
+					rating: "Please enter a rating.",
 				}
 			});
 
@@ -72,11 +72,11 @@
 				multiColor : {
 					"startColor" : "#FF0000", //RED
 					"endColor" : "#00FF00" //GREEN
+				},
+				onSet : function(rating, rateYoInstance) {
+
+					$("#rating").val(rating);
 				}
-			  onSet: function (rating, rateYoInstance) {
-				  
-			      $("#rating").val(rating);
-			    }
 			});
 
 		});
