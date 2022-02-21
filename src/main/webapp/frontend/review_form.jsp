@@ -33,7 +33,7 @@
 						<img class="book-large"
 						src="data:image/jpg;base64,${book.base64Image}" /></td>
 					<td>  
-						<div id="rateYo" name="rating"></div> <input id="raing" type="hidden"
+						<div id="rateYo"></div> <input id="rating" type="hidden"
 						name="rating" /> <input type="hidden" name="bookId"
 						value="${book.bookId}" /> <br> <input type="text"
 						name="headline" size="60" placeholder="Headline (required)" /> <br>
@@ -55,14 +55,14 @@
 
 					headline : "required",
 					comment : "required",
-					rating: "required",
+					rating : "required",
 				},
 
 				messages : {
 
 					headline : "Please enter a headline.",
 					comment : "Please enter a comment.",
-					rating: "Please enter a rating.",
+					rating : "Please enter a rating.",
 				}
 			});
 

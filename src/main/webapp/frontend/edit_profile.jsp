@@ -86,7 +86,7 @@
 				</tr>
 			</table>
 			<br> <br> <input type="submit" value="Save">&nbsp;&nbsp;&nbsp;
-			<a href="list_customer"><input type="button" value="Cancel"></a>
+			<a href="view_profile"><input type="button" value="Cancel"></a>
 
 		</form>
 	</div>

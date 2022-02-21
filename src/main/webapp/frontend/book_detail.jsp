@@ -37,11 +37,14 @@
 						${book.price}</h2> <br /> <br />
 					<button type="submit">Add to Cart</button></td>
 			</tr>
-			<tr>
+			<tr >
 				<td id="description">${book.description}</td>
 			</tr>
 			<tr>
 				<td>&nbsp;</td>
+			</tr>
+			<tr>
+				<td><hr width="700%" style="background-color:gray;"></td>
 			</tr>
 			<tr>
 				<td><h2>
@@ -52,8 +55,15 @@
 				</td>
 			</tr>
 			<tr>
+				<td><br>
+				<br>
+				<br>
+				<br>
+				<br></td>
+			</tr>
+			<tr>
 				<td colspan="3">
-					<table border="0">
+					<table style="border-style: none;" align="center" width="60%">
 						<c:forEach items="${book.reviews}" var="review">
 
 							<tr>
@@ -92,11 +102,17 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$("#buttonWriteReview").click(function() {
-				window.location = 'write_review?book_id=' + ${book.bookId};
+				window.location = 'write_review?book_id=' + ${
+					book.bookId
+				}
+				;
 			});
 
 			$("#buttonAddToCart").click(function() {
-				window.location = 'add_to_cart?book_id=' + ${book.bookId};
+				window.location = 'add_to_cart?book_id=' + ${
+					book.bookId
+				}
+				;
 			});
 		});
 	</script>
