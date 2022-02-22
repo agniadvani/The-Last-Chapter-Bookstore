@@ -13,7 +13,9 @@
 	<jsp:directive.include file="header.jsp" />
 	<c:set var="cart" value="${sessionScope['cart']}" />
 	<div align="center">
-		<h2>My Cart (${cart.totalItems})</h2>
+		<h2>
+			My Cart - <i>${cart.totalItems} items</i>
+		</h2>
 		<c:if test="${message != null }">
 			<div>
 				<h4 id="msg-failed" align="center" style="color: red;">
@@ -27,6 +29,9 @@
 		</c:if>
 		<c:if test="${cart.totalItems > 0}">
 			<div>
+				<br>
+				<br>
+				<br>
 				<form action="">
 					<table border="1">
 						<tr>
@@ -35,15 +40,20 @@
 							<th>Quantity</th>
 							<th>Price</th>
 							<th>Subtotal</th>
-							<th><a href=""><b>Clear Cart</b></a>
+							<th><a href="" style="color: white;"><b>Clear</b></a>
 						</tr>
 						<c:forEach items="${cart.items}" var="item" varStatus="status">
 							<tr>
 								<td>${status.index+1}</td>
 								<td><img class="book-small"
 									src="data:image/jpg;base64,${item.key.base64Image}" /></td>
-								<td><span id="book-title">${item.key.title}</span></td>
-								<td>${item.value}</td>
+								<td><h3>${item.key.title}</h3></td>
+								<td align="center"><strong style="font-size: 35px;"><a
+										href="decrement_book?book_id=${item.key.bookId}">-</a></strong><strong
+									style="font-size: 22px;"> ${item.value}</strong><strong
+									style="font-size: 25px;"> <a
+										href="add_to_cart?book_id=${item.key.bookId}">+</a>
+								</strong></td>
 								<td>Rs. ${item.key.price}</td>
 								<td>Rs. ${item.value * item.key.price}</td>
 								<td><a href="">Remove</a></td>
@@ -53,9 +63,11 @@
 						<tr>
 							<td></td>
 							<td></td>
+							<td></td>
 							<td><b>${cart.totalQuantity} Book(s)</b></td>
 							<td>Total:</td>
-							<td colspan="2">Rs. ${cart.totalAmount}</td>
+							<td colspan="2" align="center"><b>Rs.
+									${cart.totalAmount}</b></td>
 						</tr>
 
 					</table>

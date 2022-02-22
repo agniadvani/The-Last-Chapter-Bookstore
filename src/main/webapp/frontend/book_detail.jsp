@@ -35,7 +35,7 @@
 				</a></td>
 				<td valign="top" rowspan="2" width="20%"><h2>Rs.
 						${book.price}</h2> <br /> <br />
-					<button type="submit">Add to Cart</button></td>
+					<button id="buttonAddToCart">Add to Cart</button></td>
 			</tr>
 			<tr >
 				<td id="description">${book.description}</td>
