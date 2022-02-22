@@ -19,9 +19,9 @@
 
 	<div align="center">
 		<form id="reviewForm" action="submit_review" method="post">
-			<table class="normal" width="60%">
+			<table class="normal" width="65%">
 				<tr>
-					<td><h3>You already wrote a review for this book</h3></td>
+					<td align="center"><h3>You already wrote a review for this book</h3></td>
 					<td>&nbsp;</td>
 					<td><h2>${loggedCustomer.fullname}</h2></td>
 				</tr>

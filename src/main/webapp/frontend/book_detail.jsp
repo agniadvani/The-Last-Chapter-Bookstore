@@ -51,7 +51,7 @@
 						<a id="reviews">Customer Reviews</a>
 					</h2></td>
 				<td colspan="2" align="center">
-					<button id="buttonWriteReview">Write a Customer Review</button>
+					<button id="buttonWriteReview">Write a Review</button>
 				</td>
 			</tr>
 			<tr>
@@ -86,8 +86,13 @@
 								<td><i>${review.comment}</i></td>
 							</tr>
 							<tr>
-								<td>&nbsp;</td>
+								<td><hr width="50%"></td>
 							</tr>
+							<tr>
+								<td>&nbsp;</td>
+								
+							</tr>
+							
 						</c:forEach>
 					</table>
 				</td>
