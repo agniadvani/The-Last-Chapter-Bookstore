@@ -1,8 +1,11 @@
 package com.bookstore.controller.frontend.shoppingcart;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import com.bookstore.entity.Book;
 
@@ -59,6 +62,20 @@ public class ShoppingCart {
 		}
 
 		return total;
+	}
+
+	public List<Book> searchItem(String keyword) {
+		Set<Book> setBooks = cart.keySet();
+		List<Book> result = new ArrayList<Book>();
+		Iterator<Book> itr = setBooks.iterator();
+		while (itr.hasNext()) {
+			
+			Book nextBook = itr.next();
+			if (itr.next().getTitle().contains(keyword)) {
+				result.add(nextBook);
+			}
+		}
+		return result;
 	}
 
 	public void updateCart(int[] bookIds, int[] quantities) {
