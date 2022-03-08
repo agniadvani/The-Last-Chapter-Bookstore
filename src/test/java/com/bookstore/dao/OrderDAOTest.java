@@ -37,13 +37,13 @@ public class OrderDAOTest {
 	public void testCreateBookOrder2() {
 		BookOrder order = new BookOrder();
 		Customer customer = new Customer();
-		customer.setCustomerId(8);
+		customer.setCustomerId(24);
 		
 		order.setCustomer(customer);
-		order.setFirstname("Nam Ha Minh");
+		order.setFullName("Nam Ha Minh");
 		order.setPhone("123456789");
-		order.setAddressLine1("123 South Street, New York, USA");
-		
+		order.setShippingAddress("123 South Street, New York, USA");
+		order.setPaymentMethod("Cash On Delivery");
 		Set<OrderDetail> orderDetails = new HashSet<>();
 		OrderDetail orderDetail1 = new OrderDetail();
 		
@@ -55,7 +55,7 @@ public class OrderDAOTest {
 		
 		orderDetails.add(orderDetail1);
 
-		Book book2 = new Book(5);
+		Book book2 = new Book(7);
 		OrderDetail orderDetail2 = new OrderDetail();
 		orderDetail2.setBook(book2);
 		orderDetail2.setQuantity(1);
@@ -169,23 +169,23 @@ public class OrderDAOTest {
 
 	@Test
 	public void testGet() {
-		Integer orderId = 25;
+		Integer orderId = 22;
 		BookOrder order = orderDAO.get(orderId);
-		System.out.println(order.getFirstname());
-		System.out.println(order.getLastname());
-		System.out.println(order.getPhone());
-		System.out.println(order.getAddressLine1());
-		System.out.println(order.getAddressLine2());
-		System.out.println(order.getCity());
-		System.out.println(order.getState());
-		System.out.println(order.getCountry());
-		System.out.println(order.getZipcode());
-		System.out.println(order.getStatus());
-		System.out.println(order.getSubtotal());
-		System.out.println(order.getShippingFee());
-		System.out.println(order.getTax());
-		System.out.println(order.getTotal());
-		System.out.println(order.getPaymentMethod());
+//		System.out.println(order.getFirstname());
+//		System.out.println(order.getLastname());
+//		System.out.println(order.getPhone());
+//		System.out.println(order.getAddressLine1());
+//		System.out.println(order.getAddressLine2());
+//		System.out.println(order.getCity());
+//		System.out.println(order.getState());
+//		System.out.println(order.getCountry());
+//		System.out.println(order.getZipcode());
+//		System.out.println(order.getStatus());
+//		System.out.println(order.getSubtotal());
+//		System.out.println(order.getShippingFee());
+//		System.out.println(order.getTax());
+//		System.out.println(order.getTotal());
+//		System.out.println(order.getPaymentMethod());
 		
 		
 		assertEquals(1, order.getOrderDetails().size());
