@@ -28,6 +28,11 @@ import javax.persistence.Transient;
  */
 @Entity
 @Table(name = "book_order", catalog = "bookstoredb")
+@NamedQueries({
+		@NamedQuery(name = "BookOrder.findAll", query = "SELECT bo FROM BookOrder bo ORDER BY bo.orderDate DESC"),
+		@NamedQuery(name = "BookOrder.countAll", query = "SELECT COUNT(*) FROM BookOrder"),
+		@NamedQuery(name = "BookOrder.findByCustomer", query = "SELECT bo FROM BookOrder bo WHERE bo.customer.customerId =:customerId ORDER BY bo.orderDate DESC"),
+		@NamedQuery(name = "BookOrder.findByIdAndCustomer", query = "SELECT bo FROM BookOrder bo WHERE bo.orderId =:orderId AND bo.customer.customerId =:customerId") })
 
 public class BookOrder implements java.io.Serializable {
 
@@ -42,20 +47,20 @@ public class BookOrder implements java.io.Serializable {
 //	private String zipcode;
 //	private String country;
 	private String paymentMethod;
-	
+
 	private float total;
 	private float subtotal;
 //	private float shippingFee;
 //	private float tax;
-	
+
 	private String status;
-	
+
 	private Set<OrderDetail> orderDetails = new HashSet<OrderDetail>(0);
 
 	public BookOrder() {
 	}
 
-	@Column(name = "shipping_address", nullable = false, length = 256)	
+	@Column(name = "shipping_address", nullable = false, length = 256)
 	public String getShippingAddress() {
 		return shippingAddress;
 	}
@@ -64,7 +69,7 @@ public class BookOrder implements java.io.Serializable {
 		this.shippingAddress = shippingAddress;
 	}
 
-	@Column(name = "recipient_name", nullable = false, length = 30)	
+	@Column(name = "recipient_name", nullable = false, length = 30)
 	public String getFullName() {
 		return fullName;
 	}
@@ -123,7 +128,7 @@ public class BookOrder implements java.io.Serializable {
 //		return new Locale("", this.country).getDisplayCountry();
 //	}	
 
-	@Column(name = "subtotal", nullable = false, precision = 12, scale = 0)	
+	@Column(name = "subtotal", nullable = false, precision = 12, scale = 0)
 	public float getSubtotal() {
 		return subtotal;
 	}
@@ -207,10 +212,6 @@ public class BookOrder implements java.io.Serializable {
 		this.orderDate = orderDate;
 	}
 
-
-
-
-
 	@Column(name = "payment_method", nullable = false, length = 20)
 	public String getPaymentMethod() {
 		return this.paymentMethod;
@@ -250,14 +251,14 @@ public class BookOrder implements java.io.Serializable {
 	@Transient
 	public int getBookCopies() {
 		int total = 0;
-		
+
 		for (OrderDetail orderDetail : orderDetails) {
 			total += orderDetail.getQuantity();
 		}
-		
+
 		return total;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -283,5 +284,4 @@ public class BookOrder implements java.io.Serializable {
 		return true;
 	}
 
-	
 }
