@@ -69,7 +69,7 @@
 	</div>
 	<div align="center">
 		<h2>Ordered Books</h2>
-		<table>
+		<table border="1">
 			<tr>
 				<th>Index</th>
 				<th>Book Title</th>
@@ -90,13 +90,17 @@
 				</tr>
 			</c:forEach>
 			<tr>
-				<td colspan="4" align="right">
-				 	TOTAL:
-				</td>
+				<td colspan="4" align="right"><b>TOTAL:</b></td>
+				<td><b>${order.bookCopies}</b></td>
+				<td><b>Rs. ${order.total}</b></td>
 			</tr>
 		</table>
 	</div>
-
+	<br>
+	<div align="center">
+		<a href=""><b>Edit this Order</b></a> &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <a
+			href=""><b>Delete this Order</b></a>
+	</div>
 	<jsp:directive.include file="footer.jsp" />
 	<script type="text/javascript">
 		$(document)
