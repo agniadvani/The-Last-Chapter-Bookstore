@@ -37,29 +37,29 @@ public class OrderDAOTest {
 	public void testCreateBookOrder2() {
 		BookOrder order = new BookOrder();
 		Customer customer = new Customer();
-		customer.setCustomerId(24);
-		
+		customer.setCustomerId(22);
+	
 		order.setCustomer(customer);
-		order.setFullName("Nam Ha Minh");
-		order.setPhone("123456789");
-		order.setShippingAddress("123 South Street, New York, USA");
+		order.setFullName("Ronald");
+		order.setPhone("38279234");
+		order.setShippingAddress("Test Shipping Address");
 		order.setPaymentMethod("Cash On Delivery");
 		Set<OrderDetail> orderDetails = new HashSet<>();
 		OrderDetail orderDetail1 = new OrderDetail();
 		
-		Book book1 = new Book(10);
+		Book book1 = new Book(12);
 		orderDetail1.setBook(book1);
-		orderDetail1.setQuantity(2);
-		orderDetail1.setSubtotal(50.5f);
+		orderDetail1.setQuantity(1);
+		orderDetail1.setSubtotal(400);
 		orderDetail1.setBookOrder(order);
 		
 		orderDetails.add(orderDetail1);
 
-		Book book2 = new Book(7);
+		Book book2 = new Book(13);
 		OrderDetail orderDetail2 = new OrderDetail();
 		orderDetail2.setBook(book2);
 		orderDetail2.setQuantity(1);
-		orderDetail2.setSubtotal(40f);
+		orderDetail2.setSubtotal(670);;
 		orderDetail2.setBookOrder(order);
 		
 		orderDetails.add(orderDetail2);
@@ -213,7 +213,7 @@ public class OrderDAOTest {
 	
 	@Test
 	public void testDeleteOrder() {
-		int orderId = 9;
+		int orderId = 24;
 		orderDAO.delete(orderId);
 		
 		BookOrder order = orderDAO.get(orderId);
