@@ -18,6 +18,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "order_detail", catalog = "bookstoredb")
+@NamedQuery(name = "OrderDetail.countByBook", query = "SELECT COUNT(*) FROM OrderDetail od WHERE od.book.bookId =:bookId")
 
 public class OrderDetail implements java.io.Serializable {
 
@@ -25,7 +26,7 @@ public class OrderDetail implements java.io.Serializable {
 	private Book book;
 	private BookOrder bookOrder;
 	private int quantity;
-	private float subtotal;	
+	private float subtotal;
 
 	public OrderDetail() {
 	}
@@ -45,7 +46,7 @@ public class OrderDetail implements java.io.Serializable {
 	@EmbeddedId
 
 	@AttributeOverrides({ @AttributeOverride(name = "orderId", column = @Column(name = "order_id", nullable = false)),
-			@AttributeOverride(name = "bookId", column = @Column(name = "book_id", nullable = false))})
+			@AttributeOverride(name = "bookId", column = @Column(name = "book_id", nullable = false)) })
 	public OrderDetailId getId() {
 		return this.id;
 	}
@@ -75,7 +76,7 @@ public class OrderDetail implements java.io.Serializable {
 		this.bookOrder = bookOrder;
 		this.id.setBookOrder(bookOrder);
 	}
-	
+
 	@Column(name = "quantity", nullable = false)
 	public int getQuantity() {
 		return this.quantity;
@@ -92,6 +93,8 @@ public class OrderDetail implements java.io.Serializable {
 
 	public void setSubtotal(float subtotal) {
 		this.subtotal = subtotal;
-	}	
+	}
+
+	
 
 }

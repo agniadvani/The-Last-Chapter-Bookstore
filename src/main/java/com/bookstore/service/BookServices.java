@@ -16,6 +16,7 @@ import javax.servlet.http.Part;
 
 import com.bookstore.dao.BookDAO;
 import com.bookstore.dao.CategoryDAO;
+import com.bookstore.dao.OrderDAO;
 import com.bookstore.entity.Book;
 import com.bookstore.entity.Category;
 
@@ -189,10 +190,22 @@ public class BookServices {
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("message.jsp");
 			requestDispatcher.forward(request, response);
 			return;
+		} else {
+			OrderDAO orderDAO = new OrderDAO();
+			long countByOrder = orderDAO.countOrderDetailByBook(bookId);
+
+			if (countByOrder > 0) {
+				String message = "Could not delete book with ID " + bookId
+						+ " because there are orders associated with it.";
+				request.setAttribute("message", message);
+				RequestDispatcher requestDispatcher = request.getRequestDispatcher("message.jsp");
+				requestDispatcher.forward(request, response);
+			} else {
+				String message = "The book has been deleted successfully.";
+				bookDAO.delete(bookId);
+				listBooks(message);
+			}
 		}
-		bookDAO.delete(bookId);
-		String message = "The book has been deleted successfully.";
-		listBooks(message);
 	}
 
 	public void listBooksByCategory() throws ServletException, IOException {
@@ -248,4 +261,5 @@ public class BookServices {
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(resultPage);
 		requestDispatcher.forward(request, response);
 	}
+
 }
