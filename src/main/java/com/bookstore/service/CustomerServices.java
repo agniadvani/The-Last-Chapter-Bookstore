@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.bookstore.dao.CustomerDAO;
+import com.bookstore.dao.OrderDAO;
 import com.bookstore.dao.ReviewDAO;
 import com.bookstore.entity.Customer;
 
@@ -172,32 +173,41 @@ public class CustomerServices {
 	public void deleteCustomer() throws ServletException, IOException {
 		Integer customerId = Integer.parseInt(request.getParameter("id"));
 		Customer customer = customerDAO.get(customerId);
-		if (customer == null) {
+
+		if (customer != null) {
+			ReviewDAO reviewDAO = new ReviewDAO();
+			long reviewCount = reviewDAO.countByCustomer(customerId);
+
+			if (reviewCount > 0) {
+				String message = "Could not delete customer with ID " + customerId
+						+ " because he/she posted reviews for books.";
+				request.setAttribute("message", message);
+				RequestDispatcher requestDispatcher = request.getRequestDispatcher("message.jsp");
+				requestDispatcher.forward(request, response);
+			} else {
+				OrderDAO orderDAO = new OrderDAO();
+				long orderCount = orderDAO.countByCustomer(customerId);
+
+				if (orderCount > 0) {
+					String message = "Could not delete customer with ID " + customerId
+							+ " because he/she placed orders.";
+					request.setAttribute("message", message);
+					RequestDispatcher requestDispatcher = request.getRequestDispatcher("message.jsp");
+					requestDispatcher.forward(request, response);
+				} else {
+					customerDAO.delete(customerId);
+					String message = "The customer has been deleted successfully.";
+					listCustomers(message);
+				}
+			}
+		} else {
 			String message = "Could not find customer with ID " + customerId + ", "
 					+ "or it has been deleted by another admin";
 			request.setAttribute("message", message);
 			RequestDispatcher requestDispatcher = request.getRequestDispatcher("message.jsp");
 			requestDispatcher.forward(request, response);
-			return;
 		}
-		ReviewDAO reviewDAO = new ReviewDAO();
-		long reviewCount = reviewDAO.countByCustomer(customerId);
 
-		if (reviewCount == 0) {
-			customerDAO.delete(customerId);
-			String message = "The customer has been deleted successfully.";
-			listCustomers(message);
-		} else {
-			String message = "Could not delete customer with ID " + customerId
-					+ " because he/she posted reviews for books.";
-			request.setAttribute("message", message);
-			RequestDispatcher requestDispatcher = request.getRequestDispatcher("message.jsp");
-			requestDispatcher.forward(request, response);
-			return;
-		}
-		customerDAO.delete(customerId);
-		String message = "The customer has been deleted successfully.";
-		listCustomers(message);
 	}
 
 	public void showLogin() throws ServletException, IOException {

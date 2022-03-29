@@ -11,9 +11,9 @@ public class OrderDAO extends JpaDAO<BookOrder> implements GenericDAO<BookOrder>
 
 	@Override
 	public BookOrder create(BookOrder order) {
-		order.setOrderDate(new Date());		
+		order.setOrderDate(new Date());
 		order.setStatus("Processing");
-		
+
 		return super.create(order);
 	}
 
@@ -31,18 +31,18 @@ public class OrderDAO extends JpaDAO<BookOrder> implements GenericDAO<BookOrder>
 		Map<String, Object> parameters = new HashMap<>();
 		parameters.put("orderId", orderId);
 		parameters.put("customerId", customerId);
-		
-		List<BookOrder> result = super.findWithNamedQuery("BookOrder.findByIdAndCustomer", parameters );
-		
+
+		List<BookOrder> result = super.findWithNamedQuery("BookOrder.findByIdAndCustomer", parameters);
+
 		if (!result.isEmpty()) {
 			return result.get(0);
 		}
 		return null;
 	}
-	
+
 	@Override
 	public void delete(Object orderId) {
-		super.delete(BookOrder.class, orderId);		
+		super.delete(BookOrder.class, orderId);
 	}
 
 	@Override
@@ -51,19 +51,23 @@ public class OrderDAO extends JpaDAO<BookOrder> implements GenericDAO<BookOrder>
 	}
 
 	@Override
-	public long count() {	
+	public long count() {
 		return super.countWithNamedQuery("BookOrder.countAll");
 	}
-	
+
 	public List<BookOrder> listByCustomer(Integer customerId) {
-		return super.findWithNamedQuery("BookOrder.findByCustomer", 
-				"customerId", customerId);
+		return super.findWithNamedQuery("BookOrder.findByCustomer", "customerId", customerId);
 	}
-	
+
 	public List<BookOrder> listMostRecentSales() {
 		return super.findWithNamedQuery("BookOrder.findAll", 0, 3);
 	}
+
 	public long countOrderDetailByBook(int bookId) {
 		return super.countWithNamedQuery("OrderDetail.countByBook", "bookId", bookId);
-	}	
+	}
+
+	public long countByCustomer(int customerId) {
+		return super.countWithNamedQuery("BookOrder.countByCustomer", "customerId", customerId);
+	}
 }
