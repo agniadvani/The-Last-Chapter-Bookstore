@@ -144,17 +144,17 @@ public class OrderServices {
 
 		String phone = request.getParameter("phone");
 		String address = request.getParameter("address");
-
-//		String city = request.getParameter("city");
-//		String state = request.getParameter("state");
-//		String zipcode = request.getParameter("zipcode");
-//		String country = request.getParameter("country");		
+		String city = request.getParameter("city");
+		String state = request.getParameter("state");
+		String zipcode = request.getParameter("zipcode");
+		String country = request.getParameter("country");
 
 		BookOrder order = new BookOrder();
 		order.setFullName(fullname);
 
 		order.setPhone(phone);
-		order.setShippingAddress(address);
+		String shippingAddress = address + ", " + city + ", " + zipcode + ", " + country;
+		order.setShippingAddress(shippingAddress);
 
 //		order.setCity(city);
 //		order.setState(state);
@@ -206,6 +206,7 @@ public class OrderServices {
 
 		String message = "Thank you. Your order has been received." + "We will deliver your books within a few days.";
 		request.setAttribute("message", message);
+		request.setAttribute("isSuccessMessage", true);
 
 		String messagePage = "frontend/message.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(messagePage);

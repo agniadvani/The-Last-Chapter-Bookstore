@@ -40,7 +40,7 @@
 		<c:if test="${cart.totalItems > 0}">
 			<div>
 				<br> <br> <br>
-				<form action="">
+				<form action="update_cart" method="post" id="cartForm">
 					<table border="1">
 						<tr>
 							<th>No</th>
@@ -83,7 +83,7 @@
 			</div>
 			<div>
 				<br> <br> <a href="${pageContext.request.contextPath}"><b>Continue
-						Shopping</b></a>&nbsp;&nbsp;&nbsp; <a href=""><b>Check Out</b></a>
+						Shopping</b></a>&nbsp;&nbsp;&nbsp; <a href="checkout"><b>Check Out</b></a>
 			</div>
 		</c:if>
 	</div>
