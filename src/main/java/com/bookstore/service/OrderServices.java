@@ -193,10 +193,10 @@ public class OrderServices {
 		float shippingFee = (Float) session.getAttribute("shippingFee");
 		float total = (Float) session.getAttribute("total");
 
-		order.setSubtotal(shoppingCart.getTotalAmount());
+		order.setTotal(shoppingCart.getTotalAmount());
 //		order.setTax(tax);
 //		order.setShippingFee(shippingFee);
-		order.setTotal(total);
+//		order.setTotal(total);
 
 		return order;
 	}

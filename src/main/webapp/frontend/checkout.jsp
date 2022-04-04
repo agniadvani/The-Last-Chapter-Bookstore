@@ -87,12 +87,12 @@
 					<table>
 						<tr>
 							<td>Recipient Name:</td>
-							<td><input type="text" name="recipientName"
+							<td><input type="text" name="fullname"
 								value="${loggedCustomer.fullname }"></td>
 						</tr>
 						<tr>
 							<td>Recipient Phone:</td>
-							<td><input type="text" name="recipientPhone"
+							<td><input type="text" name="phone"
 								id="recipientPhone" value="${loggedCustomer.phone }"></td>
 						</tr>
 						<tr>

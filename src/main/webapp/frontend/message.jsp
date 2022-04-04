@@ -13,10 +13,14 @@
 	<jsp:directive.include file="header.jsp" />
 
 	<div align="center">
+		
 		<c:if test="${fn:startsWith(message, 'Could')}">
 			<h3 style="color: red;">${message}</h3>
 		</c:if>
 		<c:if test="${fn:startsWith(message, 'You')}">
+		<h3 style="color: green;">${message}</h3>
+		</c:if>
+		<c:if test="${isSuccessMessage}">
 		<h3 style="color: green;">${message}</h3>
 		</c:if>
 	</div>
